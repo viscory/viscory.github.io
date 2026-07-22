@@ -6,6 +6,10 @@ All notable changes to this project are documented here.
 
 ### Changed
 
+- Fixed 22 audit issues: SEO metadata, nav semantics (ul/li), prefers-reduced-motion, canvas clientWidth, devicePixelRatio, skill-tag class, experience date validation, CI lint/format checks, pre-commit stderr output, dead assets removed, pnpm-workspace.yaml removed, README honestly documents client JS
+
+### Changed
+
 - Migrated from Bun + TypeScript to **Astro** static site generator (pure HTML/CSS output, zero client JS)
 - Strict monochrome design system — pure `#000` / `#fff` only, no gray, no gradients, no transitions
 - Hero headers now use giant system Neo-Grotesks (`Helvetica Neue`, `Arial Black`) with tight letter-spacing
