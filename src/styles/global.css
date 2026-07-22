@@ -1,5 +1,7 @@
 /* ── Reset ── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,8 +11,9 @@
 :root {
   --color-bg: #000000;
   --color-fg: #ffffff;
-  --font-heading: 'Helvetica Neue', 'Arial Black', 'Impact', system-ui, sans-serif;
-  --font-body: 'SFMono-Regular', 'Menlo', 'Consolas', 'Monaco', monospace;
+  --font-heading:
+    "Helvetica Neue", "Arial Black", "Impact", system-ui, sans-serif;
+  --font-body: "SFMono-Regular", "Menlo", "Consolas", "Monaco", monospace;
   --text-hero: clamp(3rem, 10vw, 7rem);
   --text-heading: clamp(1.5rem, 3vw, 2.75rem);
   --text-subhead: clamp(1rem, 1.5vw, 1.25rem);
@@ -40,7 +43,10 @@ body {
 }
 
 /* ── Typography ── */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-heading);
   font-weight: 900;
   letter-spacing: -0.03em;
@@ -48,11 +54,19 @@ h1, h2, h3, h4 {
   color: var(--color-fg);
 }
 
-h1 { font-size: var(--text-hero); }
-h2 { font-size: var(--text-heading); }
-h3 { font-size: var(--text-subhead); letter-spacing: -0.02em; }
+h1 {
+  font-size: var(--text-hero);
+}
+h2 {
+  font-size: var(--text-heading);
+}
+h3 {
+  font-size: var(--text-subhead);
+  letter-spacing: -0.02em;
+}
 
-p, li {
+p,
+li {
   font-size: var(--text-body);
   line-height: 1.85;
   color: var(--color-fg);
@@ -123,6 +137,127 @@ a:hover {
 
 .section-block {
   padding: var(--space-section) 0;
+}
+
+/* ── Interactive Elements ── */
+#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#hud {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+#hud .time {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-fg);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  font-family: var(--font-body);
+}
+
+#hud .loc {
+  font-size: 11px;
+  color: var(--color-fg);
+  margin-top: 1px;
+  opacity: 0.6;
+}
+
+/* ── FSM Mood Button ── */
+#chat-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-fg);
+  color: var(--color-bg);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+#chat-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+#chat-btn:hover {
+  opacity: 0.85;
+}
+
+.chat-happy {
+  animation: chatHappy 0.6s ease-in-out infinite;
+}
+
+.chat-angry {
+  animation: chatAngry 0.4s ease-in-out infinite;
+}
+
+.chat-sleepy {
+  animation: chatSleepy 3s ease-in-out infinite;
+}
+
+.chat-jumpy {
+  transition: all 0.15s ease !important;
+}
+
+@keyframes chatHappy {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.05);
+  }
+}
+
+@keyframes chatAngry {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
+  20% {
+    transform: translate(-4px, 2px) rotate(-3deg);
+  }
+  40% {
+    transform: translate(4px, -2px) rotate(3deg);
+  }
+  60% {
+    transform: translate(-2px, 3px) rotate(-2deg);
+  }
+  80% {
+    transform: translate(2px, -3px) rotate(2deg);
+  }
+}
+
+@keyframes chatSleepy {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.92);
+    opacity: 0.6;
+  }
 }
 
 @media (max-width: 640px) {

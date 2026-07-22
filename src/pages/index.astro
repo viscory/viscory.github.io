@@ -2,15 +2,28 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const projects = await getCollection('projects');
-const experience = await getCollection('experience');
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function parseDate(s: string): number {
+  if (s === 'Present') return 999999;
+  const [m, y] = s.split(' ');
+  return parseInt(y) * 12 + MONTHS.indexOf(m);
+}
+
+const experience = (await getCollection('experience')).sort(
+  (a, b) => parseDate(b.data.endDate) - parseDate(a.data.endDate)
+);
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) => parseInt(b.data.startYear) - parseInt(a.data.startYear)
+);
+
 const skills = ['TypeScript','Python','Java','Scala','Kotlin','Go','SQL','Vue.js','React','Nest.js','Spring','Ktor','Flask','FastAPI','AWS','Alibaba Cloud','Docker','Kubernetes','ArgoCD','Kafka','PostgreSQL','MongoDB','Redis','Elasticsearch','Terraform','Helm','AWS Bedrock','RAG','Vector DBs','GitOps','CI/CD','Microservices','Event-Driven','CQRS'];
 ---
 
 <Layout>
 
   <!-- HERO -->
-  <section id="hero" class="container" style="padding: var(--space-section) 24px;">
+  <section id="hero" class="container" style="padding: var(--space-section) 24px 0;">
     <div style="max-width: 480px;">
       <img src="/assets/headshot.jpg" alt="" width="80" height="80" style="border-radius: 50%; border: 1px solid var(--color-fg); filter: grayscale(1); margin-bottom: 2rem;" />
       <h1>Faiyaz<br />Rahman</h1>
@@ -109,6 +122,9 @@ const skills = ['TypeScript','Python','Java','Scala','Kotlin','Go','SQL','Vue.js
     </div>
   </section>
 
-  <div style="height: 3rem;"></div>
+  <div style="height: 4rem;"></div>
+
+  <!-- FSM Mood Button -->
+  <button id="chat-btn" aria-label="Mood"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg></button>
 
 </Layout>
