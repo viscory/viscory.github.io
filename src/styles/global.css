@@ -100,11 +100,14 @@ li {
 a {
   color: var(--color-fg);
   text-decoration: none;
+  text-decoration-color: transparent;
 }
 
 a:hover {
   background: var(--color-fg);
   color: var(--color-bg);
+  text-decoration: none;
+  text-decoration-color: transparent;
 }
 
 /* ── Button-style links ── */
@@ -129,7 +132,7 @@ a:hover {
   color: var(--color-fg);
   font-family: var(--font-body);
   font-size: var(--text-meta);
-  text-decoration: none;
+  text-decoration: none !important;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   line-height: 1;
@@ -138,6 +141,7 @@ a:hover {
 .btn:hover {
   background: var(--color-fg);
   color: var(--color-bg);
+  text-decoration: none !important;
 }
 
 /* ── Structural borders — 1px solid only ── */

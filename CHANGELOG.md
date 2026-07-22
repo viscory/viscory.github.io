@@ -109,3 +109,10 @@ All notable changes to this project are documented here.
 - Role corrected to Full Stack Developer (was Platform Engineer)
 - Experience entries corrected to real work history
 - Contact info corrected to faiman.rahyaz@gmail.com
+
+### Changed
+
+- Fixed hero link underlines: inline `text-decoration: none` on all 4 buttons (CSS minifier was stripping it)
+- Fixed ROCKET mood transition: uses requestAnimationFrame so the browser registers the transition before position changes — no more instant snap
+- Replaced reciprocus icon with globe icon
+- Added `loading="lazy"` and `decoding="async"` to all images

@@ -288,12 +288,12 @@ if (btn) {
     } else if (m === "ROCKET") {
       btn.style.transition =
         "left 1.5s cubic-bezier(.68,-.55,.27,1.55),top 1.5s cubic-bezier(.68,-.55,.27,1.55)";
-      btn.style.left = `${Math.random() * (innerWidth - 44)}px`;
-      btn.style.top = `${Math.random() * (innerHeight - 44)}px`;
       btn.style.bottom = "auto";
       btn.style.right = "auto";
-      btn.style.bottom = "auto";
-      btn.style.right = "auto";
+      requestAnimationFrame(() => {
+        btn.style.left = `${Math.random() * (innerWidth - 44)}px`;
+        btn.style.top = `${Math.random() * (innerHeight - 44)}px`;
+      });
     } else if (m === "IDLE" || m === "STAR" || m === "MOON") {
       btn.style.left = "";
       btn.style.right = "";
