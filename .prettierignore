@@ -31,3 +31,9 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# large single-file HTML (custom formatting)
+index.html
+
+# test scripts
+tests/

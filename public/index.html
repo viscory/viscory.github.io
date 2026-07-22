@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Faiyaz Rahman</title>
+<script>document.documentElement.style.display='none'</script>
+<style>
+:root{--bg:#000;--heading:#eee;--body:#888;--link:#666;--label:#555;--border:#333;--subtle:#222}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--bg);color:var(--body);font-family:system-ui,-apple-system,sans-serif;scroll-behavior:smooth}
+body{background:var(--bg);min-height:100vh;overflow-x:hidden;display:none}
+::selection{background:var(--heading);color:var(--bg)}
+a{color:var(--link);text-decoration:none;transition:color .2s}
+a:hover{color:var(--heading)}
+h1,h2,h3,h4{color:var(--heading);font-weight:600;letter-spacing:-.02em}
+p{line-height:1.6;color:var(--body)}
+section{padding:100px 24px;position:relative;z-index:2}
+.section-label{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--label);margin-bottom:24px}
+.section-row{display:flex;gap:48px;align-items:flex-start;max-width:680px;margin:0 auto}
+.section-content{flex:1;min-width:0}
+#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.cube-wrap{position:fixed;top:50%;left:50%;width:0;height:0;z-index:1;pointer-events:none;opacity:.12;perspective:600px}
+.cube{width:200px;height:200px;position:relative;transform-style:preserve-3d;animation:spin 30s linear infinite;margin:-100px 0 0 -100px}
+.cube .f{position:absolute;width:200px;height:200px;border:1px solid var(--border);background:transparent}
+.cube .n{transform:translateZ(100px)}.cube .b{transform:rotateY(180deg) translateZ(100px)}
+.cube .r{transform:rotateY(90deg) translateZ(100px)}.cube .l{transform:rotateY(-90deg) translateZ(100px)}
+.cube .t{transform:rotateX(90deg) translateZ(100px)}.cube .d{transform:rotateX(-90deg) translateZ(100px)}
+@keyframes spin{0%{transform:rotateX(-20deg) rotateY(0)}100%{transform:rotateX(-20deg) rotateY(360deg)}}
+#hud{position:fixed;top:24px;left:24px;z-index:10;pointer-events:none}
+#hud .name{font-size:14px;font-weight:600;color:var(--heading);letter-spacing:-.01em}
+#hud .section-name{font-size:12px;color:var(--label);margin-top:2px;transition:opacity .3s}
+#nav{position:fixed;top:50%;right:20px;transform:translateY(-50%);z-index:10;display:flex;flex-direction:column;gap:10px}
+#nav a{width:8px;height:8px;border-radius:50%;border:1px solid var(--border);background:transparent;display:block;transition:all .3s}
+#nav a.active{background:var(--heading);border-color:var(--heading)}
+#scroll-arrow{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);z-index:10;color:var(--body);animation:bounce 2s infinite;cursor:pointer;transition:opacity .5s}
+#scroll-arrow.hidden{opacity:0;pointer-events:none}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
+#hero{text-align:center;align-items:center;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+#hero .section-row{flex-direction:column;align-items:center;gap:0}
+#hero img{width:100px;height:100px;border-radius:50%;filter:grayscale(1);object-fit:cover;margin-bottom:24px;border:1px solid var(--border)}
+#hero h1{font-size:36px;margin-bottom:8px}
+#hero .tagline{font-size:15px;color:var(--body);margin-bottom:24px;max-width:400px}
+#hero .links{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+#hero .links a{font-size:13px;padding:6px 14px;border:1px solid var(--border);border-radius:4px;transition:all .2s}
+#hero .links a:hover{border-color:var(--heading);color:var(--heading)}
+#about{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+#about .bio{font-size:15px;margin-bottom:32px;max-width:560px}
+#about .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px}
+#about .stat{text-align:center;padding:16px 8px;border:1px solid var(--subtle);border-radius:6px}
+#about .stat-num{font-size:20px;font-weight:600;color:var(--heading);display:block}
+#about .stat-lbl{font-size:11px;color:var(--label);margin-top:4px;text-transform:uppercase;letter-spacing:1px}
+#flow-canvas{width:100%;height:120px;border:1px solid var(--subtle);border-radius:6px;display:block}
+#experience{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:7px;top:0;bottom:0;width:1px;background:var(--border)}
+.timeline-item{position:relative;padding-bottom:48px}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-item .dot{position:absolute;left:-24px;top:4px;width:15px;height:15px;display:flex;align-items:center;justify-content:center}
+.timeline-item .dot svg{width:100%;height:100%}
+.timeline-item h3{font-size:16px;margin-bottom:2px}
+.timeline-item .meta{font-size:12px;color:var(--label);margin-bottom:6px}
+.timeline-item ul{list-style:none;padding:0}
+.timeline-item li{font-size:13px;color:var(--body);padding:1.5px 0;line-height:1.5}
+.timeline-item li::before{content:'\2013\00a0';color:var(--label)}
+#skills{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.skills-cloud{display:flex;flex-wrap:wrap;gap:8px;max-width:560px}
+.skills-cloud span{padding:5px 12px;border:1px solid var(--subtle);border-radius:4px;font-size:12px;color:var(--body);transition:all .2s}
+.skills-cloud span:hover{border-color:var(--heading);color:var(--heading)}
+#projects{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.project-card{padding:20px;border:1px solid var(--subtle);border-radius:6px;margin-bottom:16px;transition:border-color .2s;position:relative}
+.project-card:hover{border-color:var(--border)}
+.project-card .project-inner{display:flex;gap:16px;align-items:flex-start}
+.project-card .project-icon{flex-shrink:0;width:40px;height:40px;margin-top:2px}
+.project-card .project-icon svg{width:100%;height:100%}
+.project-card h3{font-size:15px;margin-bottom:4px}
+.project-card .desc{font-size:13px;color:var(--body);margin-bottom:8px;line-height:1.5}
+.project-card .tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.project-card .tags span{font-size:10px;color:var(--label);padding:2px 7px;border:1px solid var(--subtle);border-radius:3px}
+.project-card .links-proj a{font-size:12px;margin-right:12px}
+#education{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.edu-card{padding:24px;border:1px solid var(--subtle);border-radius:6px}
+.edu-card .edu-inner{display:flex;gap:20px;align-items:flex-start}
+.edu-card .edu-icon{flex-shrink:0;width:60px;height:60px}
+.edu-card .edu-icon svg{width:100%;height:100%}
+.edu-card h3{font-size:16px;margin-bottom:2px}
+.edu-card .meta{font-size:13px;color:var(--body);margin-bottom:4px}
+.edu-card .detail{font-size:12px;color:var(--label);line-height:1.5}
+.section-art{flex-shrink:0;width:100px;height:100px;margin-top:48px;opacity:0;transform:translateY(15px);transition:opacity .8s ease,transform .8s ease}
+.section-art.visible{opacity:1;transform:translateY(0)}
+.section-art svg{width:100%;height:100%}
+#chat-btn{position:fixed;bottom:24px;right:24px;z-index:20;width:44px;height:44px;border-radius:50%;background:var(--heading);color:var(--bg);border:none;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .2s;font-family:inherit;font-weight:600}
+#chat-btn:hover{opacity:.8}
+#chat-panel{position:fixed;bottom:80px;right:24px;z-index:20;width:320px;max-height:70vh;background:var(--subtle);border:1px solid var(--border);border-radius:8px;padding:20px;display:none;overflow-y:auto}
+#chat-panel.open{display:block}
+#chat-panel h3{font-size:14px;margin-bottom:16px;color:var(--heading)}
+#chat-panel .q{padding:10px 12px;border:1px solid var(--border);border-radius:4px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--body);transition:all .2s}
+#chat-panel .q:hover{border-color:var(--body);color:var(--heading)}
+#chat-panel .a{padding:10px 12px;margin:-4px 0 12px;font-size:13px;color:var(--label);line-height:1.5;display:none;border-left:1px solid var(--border)}
+#chat-panel .a.open{display:block}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+@media(max-width:640px){
+  section{padding:80px 16px}
+  .section-row{flex-direction:column;gap:24px}
+  .section-art{width:70px;height:70px;align-self:center;margin-top:0}
+  #hero h1{font-size:28px}
+  #about .stats{grid-template-columns:repeat(2,1fr)}
+  #nav{right:10px;gap:8px}
+  #nav a{width:6px;height:6px}
+  #hud{left:12px}
+  #chat-panel{width:calc(100vw - 32px);right:16px;bottom:76px}
+  .cube-wrap{opacity:.06}
+  .timeline-item h3{font-size:15px}
+  .edu-card .edu-inner{flex-direction:column;align-items:center;text-align:center}
+  .project-card .project-inner{flex-direction:column;align-items:flex-start}
+  .project-card .project-icon{width:32px;height:32px}
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<div class="cube-wrap"><div class="cube">
+  <div class="f n"></div><div class="f b"></div>
+  <div class="f r"></div><div class="f l"></div>
+  <div class="f t"></div><div class="f d"></div>
+</div></div>
+
+<div id="hud">
+  <div class="name">FAIYAZ RAHMAN</div>
+  <div class="section-name" id="cur-section">Full Stack Developer</div>
+</div>
+
+<div id="nav">
+  <a href="#hero" data-section="hero"></a>
+  <a href="#about" data-section="about"></a>
+  <a href="#experience" data-section="experience"></a>
+  <a href="#skills" data-section="skills"></a>
+  <a href="#projects" data-section="projects"></a>
+  <a href="#education" data-section="education"></a>
+</div>
+
+<div id="scroll-arrow">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+
+<section id="hero" class="fade-in visible">
+  <div class="section-row">
+    <img src="assets/headshot.jpg" alt="Faiyaz Rahman" loading="lazy">
+    <h1>Faiyaz Rahman</h1>
+    <p class="tagline">Full-stack developer building systems across AI, infrastructure, and product</p>
+    <div class="links">
+      <a href="mailto:faiman.rahyaz@gmail.com" target="_blank" rel="noopener">Email</a>
+      <a href="https://github.com/viscory" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/faiyazr" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://docs.google.com/document/d/12UwAGKPOlG3jmRZr2tO2BVqtX4pYZhmm6TAyGBRDEBQ/edit?usp=sharing" target="_blank" rel="noopener">Resume</a>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="fade-in">
+  <div class="section-row">
+    <div class="section-content">
+      <div class="section-label">About</div>
+      <p class="bio">Full-stack developer with 4+ years delivering systems across AI, infrastructure, and product. Architected multi-cloud fintech platforms, scaled Kafka to 1.5M+ messages/day, built Bedrock/RAG pipelines for quantitative reporting. Comfortable in TypeScript APIs, Vue/React UIs, and the GitOps glue between them.</p>
+      <div class="stats">
+        <div class="stat"><span class="stat-num">4+</span><span class="stat-lbl">Years</span></div>
+        <div class="stat"><span class="stat-num">1.5M+</span><span class="stat-lbl">Msg / Day</span></div>
+        <div class="stat"><span class="stat-num">15+</span><span class="stat-lbl">Microservices</span></div>
+        <div class="stat"><span class="stat-num">Multi</span><span class="stat-lbl">Cloud</span></div>
+      </div>
+      <canvas id="flow-canvas"></canvas>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="fade-in">
+  <div class="section-row">
+    <div class="section-content">
+      <div class="section-label">Experience</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="dot"><svg viewBox="0 0 15 15"><rect x="1.5" y="1.5" width="12" height="12" rx="1.5" fill="none" stroke="#eee" stroke-width="1"/><line x1="1.5" y1="6" x2="13.5" y2="6" stroke="#222" stroke-width="0.5"/><line x1="1.5" y1="10" x2="13.5" y2="10" stroke="#222" stroke-width="0.5"/><line x1="6" y1="1.5" x2="6" y2="13.5" stroke="#222" stroke-width="0.5"/><line x1="10" y1="1.5" x2="10" y2="13.5" stroke="#222" stroke-width="0.5"/><circle cx="4" cy="4" r="1" fill="#eee"/></svg></div>
+          <h3>Full Stack Developer &middot; Premialab</h3>
+          <div class="meta">Apr 2025 &ndash; Present &middot; Hong Kong</div>
+          <ul>
+            <li>Built a sub-300ms hybrid search screener over 100k+ instruments using pgvector/HNSW with Titan dense embeddings + BM25 sparse via RRF; ag-Grid frontend with virtualized rows</li>
+            <li>Architected modular CRUD persistence engine with Vue.js, FastAPI, NestJS, and AWS Bedrock (Claude 3.5 Sonnet); RAG pipeline over financial reports for automated commentary</li>
+            <li>Engineered quantitative data pipelines integrating C++ calculation engine (Docker); built peer group analytics with Pandas/NumPy and PostgreSQL</li>
+            <li>Enabled tier-one institutional rollouts for Soci&eacute;t&eacute; G&eacute;n&eacute;rale, RBC, and Schroders; migrated ESLint to Oxlint for 10x faster CI</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <div class="dot"><svg viewBox="0 0 15 15"><path d="M7.5 2 L13 7.5 L7.5 13 L2 7.5 Z" fill="none" stroke="#555" stroke-width="1"/><path d="M3 7.5 Q5 5.5, 7.5 7.5 T12 7.5" fill="none" stroke="#eee" stroke-width="0.75"/><circle cx="3" cy="9" r="1" fill="#555"/><circle cx="12" cy="6" r="1" fill="#888"/></svg></div>
+          <h3>Junior Full Stack Developer &middot; KM.ON Asia Limited</h3>
+          <div class="meta">Jul 2023 &ndash; Feb 2025 &middot; Hong Kong</div>
+          <ul>
+            <li>Architected full-stack React.js/Express.js energy platform across AWS (EU) and Alibaba Cloud (China); Terraform IaC, ArgoCD, Helm with custom data-routing for GDPR/PIPL compliance</li>
+            <li>Engineered two-tier fan-out Python/Lambda pipeline ingesting 1.5 TB of raw IoT logs; deployed TimescaleDB hypertables sustaining 2,000+ ops/sec</li>
+            <li>Executed live migration from legacy messaging to Strimzi Kafka/Karapace; custom KafkaConnectors processing 10M+ messages daily with DLQ</li>
+            <li>Integrated SBOM generation and Trivy vulnerability scans into CI/CD for 15+ microservices</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <div class="dot"><svg viewBox="0 0 15 15"><rect x="1.5" y="2" width="5" height="4.5" rx="0.5" fill="none" stroke="#555" stroke-width="0.75"/><rect x="1.5" y="8.5" width="5" height="4.5" rx="0.5" fill="none" stroke="#555" stroke-width="0.75"/><line x1="7.5" y1="7.5" x2="10.5" y2="7.5" stroke="#333" stroke-width="1"/><polygon points="10.5,6 13,7.5 10.5,9" fill="#333" stroke="none"/><rect x="11" y="3" width="3.5" height="9" rx="0.5" fill="none" stroke="#eee" stroke-width="0.75"/></svg></div>
+          <h3>Software Engineer Intern &middot; Reap Technologies</h3>
+          <div class="meta">Jun 2022 &ndash; Sep 2022 &middot; Hong Kong</div>
+          <ul>
+            <li>Migrated legacy monolithic codebase into Controller-Service-Repository architecture using Test-Driven Development</li>
+            <li>Engineered integration test suites with Docker scaffolding and mocked services</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <div class="dot"><svg viewBox="0 0 15 15"><circle cx="7.5" cy="7.5" r="3" fill="none" stroke="#eee" stroke-width="0.75"/><circle cx="2" cy="4" r="1.5" fill="none" stroke="#555" stroke-width="0.75"/><circle cx="13" cy="4" r="1.5" fill="none" stroke="#555" stroke-width="0.75"/><circle cx="2" cy="11" r="1.5" fill="none" stroke="#555" stroke-width="0.75"/><circle cx="13" cy="11" r="1.5" fill="none" stroke="#555" stroke-width="0.75"/><line x1="4" y1="5.5" x2="5.5" y2="6.5" stroke="#333" stroke-width="0.5"/><line x1="11" y1="5.5" x2="9.5" y2="6.5" stroke="#333" stroke-width="0.5"/><line x1="4" y1="9.5" x2="5.5" y2="8.5" stroke="#333" stroke-width="0.5"/><line x1="11" y1="9.5" x2="9.5" y2="8.5" stroke="#333" stroke-width="0.5"/></svg></div>
+          <h3>IT Strategist (Contract) &middot; BNP Paribas CIB</h3>
+          <div class="meta">Feb 2021 &ndash; Aug 2021 &middot; Hong Kong</div>
+          <ul>
+            <li>Engineered distributed fan-out data replication engine in Python routing payloads based on live server latencies across 200+ nodes</li>
+            <li>Designed Kafka/Elasticsearch ingestion pipeline for sub-second dashboard refreshes on high-cardinality trading logs</li>
+            <li>Optimized multi-threaded C++ packet replay engine using non-blocking condition variables</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="section-art" id="exp-art">
+      <svg viewBox="0 0 100 100">
+        <rect x="10" y="10" width="80" height="80" rx="3" fill="none" stroke="#333" stroke-width="0.75"/>
+        <rect x="20" y="20" width="60" height="60" rx="2" fill="none" stroke="#222" stroke-width="0.5"/>
+        <line x1="10" y1="35" x2="90" y2="35" stroke="#222" stroke-width="0.5"/>
+        <line x1="10" y1="65" x2="90" y2="65" stroke="#222" stroke-width="0.5"/>
+        <line x1="35" y1="10" x2="35" y2="90" stroke="#222" stroke-width="0.5"/>
+        <line x1="65" y1="10" x2="65" y2="90" stroke="#222" stroke-width="0.5"/>
+        <circle cx="28" cy="28" r="3" fill="#eee" opacity=".8"/>
+        <circle cx="72" cy="28" r="2.5" fill="#888"/>
+        <circle cx="28" cy="72" r="2" fill="#555"/>
+        <circle cx="72" cy="72" r="3" fill="#eee" opacity=".5"/>
+        <path d="M28 28 L72 72" stroke="#333" stroke-width="0.5" stroke-dasharray="3,2"/>
+        <path d="M72 28 L28 72" stroke="#333" stroke-width="0.5" stroke-dasharray="3,2"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="fade-in">
+  <div class="section-row">
+    <div class="section-content">
+      <div class="section-label">Skills</div>
+      <div class="skills-cloud">
+        <span>TypeScript</span><span>Python</span><span>Java</span><span>Scala</span><span>Kotlin</span><span>Go</span><span>SQL</span>
+        <span>Vue.js</span><span>React</span><span>Nest.js</span><span>Spring</span><span>Ktor</span><span>Flask</span><span>FastAPI</span>
+        <span>AWS</span><span>Alibaba Cloud</span><span>Docker</span><span>Kubernetes</span><span>ArgoCD</span>
+        <span>Kafka</span><span>PostgreSQL</span><span>MongoDB</span><span>Redis</span><span>Elasticsearch</span>
+        <span>Terraform</span><span>Helm</span><span>AWS Bedrock</span><span>RAG</span><span>Vector DBs</span>
+        <span>GitOps</span><span>CI/CD</span><span>Microservices</span><span>Event-Driven</span><span>CQRS</span>
+      </div>
+    </div>
+    <div class="section-art" id="skills-art">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="30" fill="none" stroke="#333" stroke-width="0.75"/>
+        <circle cx="50" cy="50" r="18" fill="none" stroke="#222" stroke-width="0.5"/>
+        <circle cx="50" cy="50" r="6" fill="none" stroke="#555" stroke-width="0.5"/>
+        <line x1="50" y1="20" x2="50" y2="80" stroke="#222" stroke-width="0.5"/>
+        <line x1="20" y1="50" x2="80" y2="50" stroke="#222" stroke-width="0.5"/>
+        <line x1="28" y1="28" x2="72" y2="72" stroke="#222" stroke-width="0.5"/>
+        <line x1="72" y1="28" x2="28" y2="72" stroke="#222" stroke-width="0.5"/>
+        <circle cx="50" cy="50" r="2.5" fill="#eee"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="fade-in">
+  <div class="section-row">
+    <div class="section-content">
+      <div class="section-label">Projects</div>
+      <div class="project-card">
+        <div class="project-inner">
+          <div class="project-icon"><svg viewBox="0 0 40 40"><rect x="4" y="4" width="32" height="10" rx="1.5" fill="none" stroke="#333" stroke-width="0.75"/><rect x="7" y="6.5" width="5" height="3" rx="0.5" fill="#555"/><rect x="4" y="17" width="32" height="10" rx="1.5" fill="none" stroke="#333" stroke-width="0.75"/><rect x="7" y="19.5" width="5" height="3" rx="0.5" fill="#888"/><rect x="4" y="30" width="32" height="8" rx="1.5" fill="none" stroke="#333" stroke-width="0.75"/><rect x="7" y="32" width="5" height="3" rx="0.5" fill="#eee"/><line x1="20" y1="14" x2="20" y2="17" stroke="#222" stroke-width="0.5"/><line x1="20" y1="27" x2="20" y2="30" stroke="#222" stroke-width="0.5"/></svg></div>
+          <div class="project-text">
+            <h3>Homelab</h3>
+            <div class="meta" style="font-size:12px;color:var(--label);margin-bottom:6px">2025 &ndash; Present</div>
+            <div class="desc">20+ self-hosted services with Golang deployment tooling and Tailscale networking. Golang CLI toolchain around centralized service registry. Zero-exposure network: Tailscale mesh VPN, MagicDNS, Pi-hole, Caddy reverse proxy. Multi-layer observability with VictoriaMetrics, Loki, Grafana, and Alertmanager.</div>
+            <div class="tags"><span>Go</span><span>Docker</span><span>Tailscale</span><span>Grafana</span><span>PostgreSQL</span></div>
+            <div class="links-proj"><a href="https://github.com/viscory" target="_blank" rel="noopener">GitHub</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-art" id="projects-art">
+      <svg viewBox="0 0 100 100">
+        <rect x="15" y="8" width="70" height="22" rx="2" fill="none" stroke="#333" stroke-width="0.75"/>
+        <rect x="20" y="12" width="10" height="5" rx="0.75" fill="#555"/>
+        <rect x="15" y="39" width="70" height="22" rx="2" fill="none" stroke="#333" stroke-width="0.75"/>
+        <rect x="20" y="43" width="10" height="5" rx="0.75" fill="#888"/>
+        <rect x="15" y="70" width="70" height="22" rx="2" fill="none" stroke="#333" stroke-width="0.75"/>
+        <rect x="20" y="74" width="10" height="5" rx="0.75" fill="#eee"/>
+        <line x1="50" y1="30" x2="50" y2="39" stroke="#222" stroke-width="0.5"/>
+        <line x1="50" y1="61" x2="50" y2="70" stroke="#222" stroke-width="0.5"/>
+        <path d="M70 12 Q80 25, 70 39" fill="none" stroke="#222" stroke-width="0.5"/>
+        <path d="M70 43 Q82 56, 70 70" fill="none" stroke="#222" stroke-width="0.5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="fade-in">
+  <div class="section-row">
+    <div class="section-content">
+      <div class="section-label">Education</div>
+      <div class="edu-card">
+        <div class="edu-inner">
+          <div class="edu-icon"><svg viewBox="0 0 60 60">
+            <path d="M30 5 L6 18 L6 42 Q6 55, 30 58 Q54 55, 54 42 L54 18 Z" fill="none" stroke="#333" stroke-width="1"/>
+            <path d="M30 13 L12 22 L12 40 Q12 50, 30 53 Q48 50, 48 40 L48 22 Z" fill="none" stroke="#222" stroke-width="0.5"/>
+            <line x1="12" y1="28" x2="48" y2="28" stroke="#222" stroke-width="0.5"/>
+            <line x1="12" y1="34" x2="48" y2="34" stroke="#222" stroke-width="0.5"/>
+            <text x="30" y="45" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#eee">60</text>
+            <text x="30" y="55" text-anchor="middle" font-family="system-ui,sans-serif" font-size="5" letter-spacing="0.5" fill="#555">CUHK</text>
+          </svg></div>
+          <div>
+            <h3>The Chinese University of Hong Kong</h3>
+            <div class="meta">B.Sc. in Computer Science &middot; Second Class Honours (2:1) &middot; Sep 2018 &ndash; Jun 2023</div>
+            <div class="detail">Concentration: Database and Information Systems &middot; Full Ride Admission Scholarship &middot; The 'Sunny' Award<br>English Debating Team &middot; Google Developers Student Club</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<button id="chat-btn" onclick="toggleChat()" aria-label="FAQ">?</button>
+<div id="chat-panel">
+  <h3>FAQ</h3>
+  <div id="faq-list"></div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
