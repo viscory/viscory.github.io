@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented here.
 
+## [CI Fix: Standard Workflow + .npmrc]
+
+### Changed
+
+- `.github/workflows/ci.yml`: Restored standard `pnpm/action-setup@v4` + `setup-node@v4` with Node 22. Drops corepack/npm-install experiments.
+
+### Fixed
+
+- `.npmrc`: Added `only-built-dependencies=esbuild,sharp` (pnpm 11 requires explicit build approval)
+
+---
+
 ## [Remixicon CDN + Mood Button Fix]
 
 ### Changed
