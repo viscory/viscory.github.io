@@ -103,7 +103,7 @@ function animate() {
 }
 animate();
 
-// ── Section Tracking (nav dots only) ──
+// ── Section Tracking ──
 const sections = document.querySelectorAll<HTMLElement>("section");
 const navLinks = document.querySelectorAll<HTMLAnchorElement>("#nav a");
 const obs = new IntersectionObserver(
@@ -152,66 +152,39 @@ document.querySelectorAll(".fade-in").forEach((el) => {
   if (!el.classList.contains("visible")) fadeObs.observe(el);
 });
 
-// ── Section Art Fade In/Out ──
-const artObs = new IntersectionObserver(
-  (entries) => {
-    for (const e of entries)
-      e.target.classList.toggle("visible", e.isIntersecting);
-  },
-  { threshold: 0.25 },
-);
-document.querySelectorAll(".section-art").forEach((el) => {
-  const section = el.closest("section");
-  if (section && !section.classList.contains("visible")) artObs.observe(el);
-});
+// ── Chat Button Gag ──
+const chatBtn = document.getElementById("chat-btn")!;
+let gagLevel = 0;
+const gags = ["chat-shake", "chat-flip", "chat-boom", "chat-spin"];
 
-// ── Chat ──
-const faq = [
-  {
-    q: "What do you do?",
-    a: "Full-stack developer. Currently at Premialab building fintech platforms — search, AI reporting, and quantitative data pipelines.",
-  },
-  {
-    q: "Stack?",
-    a: "TypeScript, Python, Go, Vue/React, Kafka, K8s, AWS Bedrock, PostgreSQL, Terraform.",
-  },
-  { q: "Location?", a: "Hong Kong." },
-  {
-    q: "Experience?",
-    a: "5+ years across full-stack dev, data engineering, and infrastructure. Includes internships at Reap and BNP Paribas.",
-  },
-  { q: "Open to work?", a: "Always. Email or LinkedIn is best." },
-  { q: "Contact?", a: "faiman.rahyaz@gmail.com — LinkedIn DM works too." },
-];
+chatBtn.addEventListener("click", () => {
+  chatBtn.className = "";
+  void chatBtn.offsetWidth; // reflow
 
-const faqList = document.getElementById("faq-list")!;
-for (const item of faq) {
-  const q = document.createElement("div");
-  q.className = "q";
-  q.textContent = item.q;
-  const a = document.createElement("div");
-  a.className = "a";
-  a.textContent = item.a;
-  q.addEventListener("click", () => a.classList.toggle("open"));
-  faqList.appendChild(q);
-  faqList.appendChild(a);
-}
+  const anim = gags[gagLevel % gags.length];
+  chatBtn.classList.add(anim);
 
-function toggleChat() {
-  document.getElementById("chat-panel")!.classList.toggle("open");
-}
-(document.getElementById("chat-btn") as HTMLButtonElement).onclick = toggleChat;
-
-document.addEventListener("click", (e) => {
-  const p = document.getElementById("chat-panel")!;
-  const b = document.getElementById("chat-btn")!;
-  if (
-    p.classList.contains("open") &&
-    !p.contains(e.target as Node) &&
-    !b.contains(e.target as Node)
-  ) {
-    p.classList.remove("open");
+  // Random color flash
+  if (gagLevel >= 2) {
+    chatBtn.style.background = ["#fff", "#888", "#333"][gagLevel % 3];
+    chatBtn.style.color = "#000";
+    setTimeout(() => {
+      chatBtn.style.background = "";
+      chatBtn.style.color = "";
+    }, 600);
   }
+
+  // Random position teleport
+  if (gagLevel >= 3) {
+    const maxW = innerWidth - 60;
+    const maxH = innerHeight - 60;
+    chatBtn.style.position = "fixed";
+    chatBtn.style.bottom = `${Math.random() * maxH}px`;
+    chatBtn.style.right = `${Math.random() * maxW}px`;
+  }
+
+  gagLevel++;
+  if (gagLevel >= 8) gagLevel = 0;
 });
 
 // ── Data Flow Graph ──
@@ -223,7 +196,7 @@ let flowT = 0;
 function resizeFlow() {
   const r = fc.parentElement!.getBoundingClientRect();
   fc.width = Math.min(r.width - 2, 680);
-  fc.height = 120;
+  fc.height = 100;
 }
 resizeFlow();
 addEventListener("resize", resizeFlow);

@@ -6,8 +6,18 @@ All notable changes to this project are documented here.
 
 ### Changed
 
+- Chat button is now a gag: shakes, flips, explodes, and teleports on repeated clicks (4 escalating animations)
+- Removed stats grid from About section (mean meaningless numbers)
+- Removed section-art SVGs (weird boxes in experience/skills)
+- Removed FAQ chat panel (replaced by gag button)
+- Skills tags: added `white-space:nowrap` to prevent split words like ArgoCD/PostgreSQL
+- Education: separated concentration, scholarships, and organizations onto individual lines
+- Base font-size set to 15px with consistent sizing throughout
+- Removed inline `onclick` from chat button (now uses addEventListener)
+
+### Changed
+
 - Added Remixicon SVGs inline for all hero links (Email, GitHub, LinkedIn, Resume) and chat button
-- Chat button now uses Remixicon message icon instead of "?" character
 - Build output now goes to `dist/` — served locally on `localhost:8080` and deployed to GitHub Pages via CI
 - HUD shows live Hong Kong time (HH:MM HKT) instead of name
 - Stats: 5+ YoE (includes internships)
