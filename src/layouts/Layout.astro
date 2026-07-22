@@ -11,9 +11,7 @@ import '../styles/global.css';
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>F</text></svg>" />
 </head>
 <body>
-
-  <!-- Navigation -->
-  <nav class="container" style="padding-top: 1.5rem; padding-bottom: 1.5rem;">
+  <nav class="container" style="padding: 1.5rem 24px;">
     <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
       <a href="#about" class="meta" style="text-decoration: none;">About</a>
       <a href="#experience" class="meta" style="text-decoration: none;">Experience</a>
@@ -22,18 +20,14 @@ import '../styles/global.css';
       <a href="#education" class="meta" style="text-decoration: none;">Education</a>
     </div>
   </nav>
-
   <main>
     <slot />
   </main>
-
-  <!-- Footer -->
-  <footer class="container section-divider" style="padding-top: var(--space-inner); padding-bottom: 2rem; margin-top: 0;">
+  <footer class="container" style="border-top: 1px solid var(--color-fg); padding: var(--space-inner) 24px 2rem; margin-top: 0;">
     <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
       <span class="meta">Faiyaz Rahman</span>
       <span class="meta" style="letter-spacing: 0.05em;">Hong Kong &middot; MMXXV</span>
     </div>
   </footer>
-
 </body>
 </html>

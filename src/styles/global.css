@@ -1,5 +1,9 @@
 /* ── Reset ── */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 /* ── Design Tokens ── */
 :root {
@@ -48,7 +52,7 @@ h1 { font-size: var(--text-hero); }
 h2 { font-size: var(--text-heading); }
 h3 { font-size: var(--text-subhead); letter-spacing: -0.02em; }
 
-p, li, .text-body {
+p, li {
   font-size: var(--text-body);
   line-height: 1.85;
   color: var(--color-fg);
@@ -61,7 +65,7 @@ p, li, .text-body {
   letter-spacing: 0.15em;
 }
 
-/* ── Links ── */
+/* ── Links — instant block inversion ── */
 a {
   color: var(--color-fg);
   text-decoration: underline;
@@ -75,7 +79,7 @@ a:hover {
   text-decoration: none;
 }
 
-/* ── Button-style links (invert on hover) ── */
+/* ── Button-style links ── */
 .btn {
   display: inline-block;
   padding: 0.5em 1.25em;
@@ -95,7 +99,7 @@ a:hover {
   color: var(--color-bg);
 }
 
-/* ── Borders ── */
+/* ── Structural borders — 1px solid only ── */
 .section-divider {
   border: none;
   border-top: 1px solid var(--color-fg);
@@ -110,11 +114,7 @@ a:hover {
   border-bottom: 1px solid var(--color-fg);
 }
 
-.grid-line {
-  border-right: 1px solid var(--color-fg);
-}
-
-/* ── Layout Helpers ── */
+/* ── Layout ── */
 .container {
   max-width: 720px;
   margin: 0 auto;

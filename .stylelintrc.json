@@ -1,0 +1,17 @@
+{
+  "rules": {
+    "color-named": "never",
+    "function-disallowed-list": ["url"],
+    "property-no-unknown": true,
+    "no-duplicate-selectors": true,
+    "no-empty-source": true,
+    "selector-pseudo-class-no-unknown": true,
+    "selector-pseudo-element-no-unknown": true,
+    "unit-allowed-list": ["px", "rem", "em", "%", "vw", "vh", "clamp"],
+    "font-family-no-missing-generic-family-keyword": true,
+    "declaration-property-value-no-unknown": [
+      true,
+      { "ignoreProperties": { "/./": ["/var\\(--/"] } }
+    ]
+  }
+}
