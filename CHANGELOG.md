@@ -9,6 +9,7 @@ All notable changes to this project are documented here.
 - Replaced all hardcoded SVG icons with Remixicon CDN (`remixicon@4.6.0`) — hero links, project icons, mood button all use `ri-*` classes
 - Mood button: BOLT and ROCKET moods now always use CSS transitions instead of instant position changes (no teleporting)
 - Added `padding-bottom: 0.5rem` under hero link buttons
+- Switched Remixicon CDN from jsDelivr (MIME type issue) to cdnjs for reliable CSS serving
 - Mood button SVGs replaced with Remixicon `<i>` elements
 - CSS updated: `#chat-btn i` instead of `#chat-btn svg` for styling
 
