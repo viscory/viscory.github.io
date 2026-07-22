@@ -15,6 +15,7 @@ All notable changes to this project are documented here.
 - `.github/workflows/ci.yml`: Bump Node 20→22 (pnpm 11 requires Node 22.13+)
 - `.nojekyll`: Restored at repo root (prevents GitHub Pages Jekyll build on source branch)
 - `.npmrc`: Added with `only-built-dependencies=esbuild,sharp` (pnpm 11 blocks all builds by default, needed for CI)
+- `.github/workflows/ci.yml`: Replaced `pnpm/action-setup@v4` with `corepack enable && corepack prepare pnpm@11` (pnpm/action-setup self-installer fails on Node 24 runner)
 - Mood button SVGs replaced with Remixicon `<i>` elements
 - CSS updated: `#chat-btn i` instead of `#chat-btn svg` for styling
 
