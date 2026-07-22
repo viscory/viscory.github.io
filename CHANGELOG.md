@@ -4,6 +4,12 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
+### Fixed
+
+- FOUC prevention code (inline script + body display:none) was hiding page content and never showing it back, resulting in white screen
+- CSS was orphaned outside `<style>` tags after edit tool replacement — restructured so all CSS is properly inside the style block
+- Removed orphaned `public/main.css` (CSS is inline in index.html)
+
 ### Added
 
 - Complete rewrite of portfolio site as a proper Bun + TypeScript project
