@@ -25,7 +25,7 @@ const skills = ['TypeScript','Python','Java','Scala','Kotlin','Go','SQL','Vue.js
   <!-- HERO -->
   <section id="hero" class="container" style="padding: var(--space-section) 24px 0;">
     <div style="max-width: 480px;">
-      <img src="/assets/headshot.jpg" alt="" width="80" height="80" style="border-radius: 50%; border: 1px solid var(--color-fg); filter: grayscale(1); margin-bottom: 2rem;" />
+      <img src="/assets/headshot.jpg" alt="" width="80" height="80" style="border-radius: 50%; filter: grayscale(1); margin-bottom: 2rem;" />
       <h1>Faiyaz<br />Rahman</h1>
       <p style="margin: 1.5rem 0 2rem; max-width: 420px;">
         Full-stack developer building systems across AI, infrastructure, and product.
@@ -41,8 +41,8 @@ const skills = ['TypeScript','Python','Java','Scala','Kotlin','Go','SQL','Vue.js
 
   <hr class="container section-divider" />
 
-  <!-- ABOUT -->
-  <section id="about" class="container section-block">
+    <!-- ABOUT -->
+    <section id="about" class="container section-block" style="padding-top: var(--space-section);">
     <span class="meta" style="display: block; margin-bottom: 1.5rem;">About</span>
     <p>
       Full-stack developer with 5+ years delivering systems across AI, infrastructure, and product. Architected multi-cloud fintech platforms, scaled Kafka to 1.5M+ messages/day, built Bedrock/RAG pipelines for quantitative reporting. Comfortable in TypeScript APIs, Vue/React UIs, and the GitOps glue between them.
@@ -51,8 +51,8 @@ const skills = ['TypeScript','Python','Java','Scala','Kotlin','Go','SQL','Vue.js
 
   <hr class="container section-divider" />
 
-  <!-- EXPERIENCE -->
-  <section id="experience" class="container section-block">
+    <!-- EXPERIENCE -->
+    <section id="experience" class="container section-block" style="padding-top: var(--space-section);">
     <span class="meta" style="display: block; margin-bottom: 1.5rem;">Experience</span>
     <div class="bordered" style="border-top: none;">
       {experience.map((entry) => (
@@ -74,8 +74,8 @@ const skills = ['TypeScript','Python','Java','Scala','Kotlin','Go','SQL','Vue.js
 
   <hr class="container section-divider" />
 
-  <!-- SKILLS -->
-  <section id="skills" class="container section-block">
+    <!-- SKILLS -->
+    <section id="skills" class="container section-block" style="padding-top: var(--space-section);">
     <span class="meta" style="display: block; margin-bottom: 1.5rem;">Skills</span>
     <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
       {skills.map((skill) => (
@@ -86,8 +86,8 @@ const skills = ['TypeScript','Python','Java','Scala','Kotlin','Go','SQL','Vue.js
 
   <hr class="container section-divider" />
 
-  <!-- PROJECTS -->
-  <section id="projects" class="container section-block">
+    <!-- PROJECTS -->
+    <section id="projects" class="container section-block" style="padding-top: var(--space-section);">
     <span class="meta" style="display: block; margin-bottom: 1.5rem;">Projects</span>
     <div class="bordered" style="border-top: none;">
       {projects.map((project, i) => (
@@ -105,8 +105,8 @@ const skills = ['TypeScript','Python','Java','Scala','Kotlin','Go','SQL','Vue.js
 
   <hr class="container section-divider" />
 
-  <!-- EDUCATION -->
-  <section id="education" class="container section-block">
+    <!-- EDUCATION -->
+    <section id="education" class="container section-block" style="padding-top: var(--space-section);">
     <span class="meta" style="display: block; margin-bottom: 1.5rem;">Education</span>
     <div class="bordered" style="padding: 1.5rem 1.25rem; display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;">
       <img src="/assets/school-logo-1x.png" alt="CUHK" width="80" style="filter: grayscale(1); border: 1px solid var(--color-fg); flex-shrink: 0;" />
