@@ -83,15 +83,12 @@ li {
 /* ── Links — instant block inversion ── */
 a {
   color: var(--color-fg);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
+  text-decoration: none;
 }
 
 a:hover {
   background: var(--color-fg);
   color: var(--color-bg);
-  text-decoration: none;
 }
 
 /* ── Button-style links ── */

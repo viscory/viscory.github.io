@@ -286,9 +286,12 @@ if (btn) {
       btn.style.bottom = "auto";
       btn.style.right = "auto";
     } else if (m === "ROCKET") {
-      btn.style.transition = "left .1s,top .1s";
+      btn.style.transition =
+        "left 1.5s cubic-bezier(.68,-.55,.27,1.55),top 1.5s cubic-bezier(.68,-.55,.27,1.55)";
       btn.style.left = `${Math.random() * (innerWidth - 44)}px`;
       btn.style.top = `${Math.random() * (innerHeight - 44)}px`;
+      btn.style.bottom = "auto";
+      btn.style.right = "auto";
       btn.style.bottom = "auto";
       btn.style.right = "auto";
     } else if (m === "IDLE" || m === "STAR" || m === "MOON") {
