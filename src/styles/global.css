@@ -221,9 +221,9 @@ a:hover {
   font-family: inherit;
 }
 
-#chat-btn svg {
-  width: 22px;
-  height: 22px;
+#chat-btn i {
+  font-size: 22px;
+  line-height: 1;
 }
 
 #chat-btn:hover {
@@ -315,8 +315,8 @@ a:hover {
     width: 40px;
     height: 40px;
   }
-  #chat-btn svg {
-    width: 20px;
-    height: 20px;
+  #chat-btn i {
+    font-size: 20px;
+    line-height: 1;
   }
 }

@@ -190,11 +190,11 @@ if (btn) {
   type Mood = (typeof moods)[number];
 
   const SVGS: Record<Mood, string> = {
-    IDLE: '<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="currentColor"/>',
-    STAR: '<path d="M12 2l2.5 7.5H22l-6 4.5 2.5 7.5L12 17l-6.5 4.5L8 14l-6-4.5h7.5z" fill="currentColor"/>',
-    BOLT: '<path d="M13 2L4 12h7v10l9-12h-7z" fill="currentColor"/>',
-    MOON: '<path d="M12 2a10 10 0 1 0 10 10 8 8 0 0 1-10-10z" fill="currentColor"/>',
-    ROCKET: '<path d="M12 2l8 10h-5v10H9V12H4z" fill="currentColor"/>',
+    IDLE: '<i class="ri-question-line"></i>',
+    STAR: '<i class="ri-star-line"></i>',
+    BOLT: '<i class="ri-flashlight-line"></i>',
+    MOON: '<i class="ri-moon-line"></i>',
+    ROCKET: '<i class="ri-rocket-2-line"></i>',
   };
 
   const CLASSES: Record<Mood, string> = {
@@ -275,7 +275,7 @@ if (btn) {
     };
 
     if (m === "BOLT" && mx !== null && my !== null && !reduced) {
-      btn.style.transition = "left .25s,top .25s";
+      btn.style.transition = "left .35s ease,top .35s ease";
       btn.style.left = `${Math.max(0, Math.min(innerWidth - 44, mx - 22))}px`;
       btn.style.top = `${Math.max(0, Math.min(innerHeight - 44, my - 22))}px`;
       btn.style.bottom = "auto";
@@ -283,10 +283,8 @@ if (btn) {
     } else if (m === "ROCKET" && !reduced) {
       btn.style.transition =
         "left 1.5s cubic-bezier(.68,-.55,.27,1.55),top 1.5s cubic-bezier(.68,-.55,.27,1.55)";
-      requestAnimationFrame(() => {
-        btn.style.left = `${Math.random() * (innerWidth - 44)}px`;
-        btn.style.top = `${Math.random() * (innerHeight - 44)}px`;
-      });
+      btn.style.left = `${Math.random() * (innerWidth - 44)}px`;
+      btn.style.top = `${Math.random() * (innerHeight - 44)}px`;
     } else {
       resetPos();
     }
