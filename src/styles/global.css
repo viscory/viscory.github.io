@@ -1,0 +1,136 @@
+/* ── Reset ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── Design Tokens ── */
+:root {
+  --color-bg: #000000;
+  --color-fg: #ffffff;
+  --font-heading: 'Helvetica Neue', 'Arial Black', 'Impact', system-ui, sans-serif;
+  --font-body: 'SFMono-Regular', 'Menlo', 'Consolas', 'Monaco', monospace;
+  --text-hero: clamp(3rem, 10vw, 7rem);
+  --text-heading: clamp(1.5rem, 3vw, 2.75rem);
+  --text-subhead: clamp(1rem, 1.5vw, 1.25rem);
+  --text-body: clamp(0.75rem, 1vw, 0.9375rem);
+  --text-meta: clamp(0.625rem, 0.8vw, 0.75rem);
+  --space-section: clamp(4rem, 8vw, 8rem);
+  --space-inner: clamp(2rem, 3vw, 4rem);
+}
+
+html {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--color-fg);
+  color: var(--color-bg);
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--color-fg);
+}
+
+h1 { font-size: var(--text-hero); }
+h2 { font-size: var(--text-heading); }
+h3 { font-size: var(--text-subhead); letter-spacing: -0.02em; }
+
+p, li, .text-body {
+  font-size: var(--text-body);
+  line-height: 1.85;
+  color: var(--color-fg);
+}
+
+.meta {
+  font-size: var(--text-meta);
+  color: var(--color-fg);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* ── Links ── */
+a {
+  color: var(--color-fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  background: var(--color-fg);
+  color: var(--color-bg);
+  text-decoration: none;
+}
+
+/* ── Button-style links (invert on hover) ── */
+.btn {
+  display: inline-block;
+  padding: 0.5em 1.25em;
+  border: 1px solid var(--color-fg);
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  font-size: var(--text-meta);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1;
+}
+
+.btn:hover {
+  background: var(--color-fg);
+  color: var(--color-bg);
+}
+
+/* ── Borders ── */
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--color-fg);
+  margin: var(--space-section) 0;
+}
+
+.bordered {
+  border: 1px solid var(--color-fg);
+}
+
+.bordered-bottom {
+  border-bottom: 1px solid var(--color-fg);
+}
+
+.grid-line {
+  border-right: 1px solid var(--color-fg);
+}
+
+/* ── Layout Helpers ── */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-block {
+  padding: var(--space-section) 0;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --text-hero: clamp(2.25rem, 12vw, 3.5rem);
+    --space-section: clamp(3rem, 6vw, 4rem);
+  }
+  .container {
+    padding: 0 16px;
+  }
+}

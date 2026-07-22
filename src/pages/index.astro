@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section id="hero" class="container" style="padding-top: var(--space-section); padding-bottom: var(--space-section);">
+    <div style="max-width: 480px;">
+      <img src="/assets/headshot.jpg" alt="" width="80" height="80" style="border-radius: 50%; border: 1px solid var(--color-fg); filter: grayscale(1); margin-bottom: 2rem;" />
+      <h1>Faiyaz<br />Rahman</h1>
+      <p style="margin-top: 1.5rem; margin-bottom: 2rem; max-width: 420px;">
+        Full-stack developer building systems across AI, infrastructure, and product.
+      </p>
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        <a href="mailto:faiman.rahyaz@gmail.com" class="btn">Email</a>
+        <a href="https://github.com/viscory" class="btn" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/faiyazr" class="btn" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="/assets/resume.pdf" class="btn" target="_blank" rel="noopener">Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="container section-divider" />
+
+  <!-- ═══════════ ABOUT ═══════════ -->
+  <section id="about" class="container section-block">
+    <span class="meta" style="display: block; margin-bottom: 1.5rem;">About</span>
+    <p>
+      Full-stack developer with 5+ years delivering systems across AI, infrastructure, and product. Architected multi-cloud fintech platforms, scaled Kafka to 1.5M+ messages/day, built Bedrock/RAG pipelines for quantitative reporting. Comfortable in TypeScript APIs, Vue/React UIs, and the GitOps glue between them.
+    </p>
+  </section>
+
+  <hr class="container section-divider" />
+
+  <!-- ═══════════ EXPERIENCE ═══════════ -->
+  <section id="experience" class="container section-block">
+    <span class="meta" style="display: block; margin-bottom: 1.5rem;">Experience</span>
+
+    <div class="bordered" style="border-top: none;">
+      <!-- Premialab -->
+      <div class="bordered-bottom" style="padding: 1.25rem 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.25rem;">
+          <h3>Premialab</h3>
+          <span class="meta">Apr 2025 &ndash; Present</span>
+        </div>
+        <span class="meta" style="display: block; margin-bottom: 0.75rem;">Full Stack Developer &middot; Hong Kong</span>
+        <ul style="list-style: none; padding: 0;">
+          <li style="padding: 0.2rem 0; text-indent: -1.1rem; padding-left: 1.1rem;">&mdash;&nbsp;Built a sub-300ms hybrid search screener over 100k+ instruments using pgvector/HNSW with Titan dense embeddings + BM25 sparse via RRF; ag-Grid frontend with virtualized rows</li>
+          <li style="padding: 0.2rem 0; text-indent: -1.1rem; padding-left: 1.1rem;">&mdash;&nbsp;Architected modular CRUD persistence engine with Vue.js, FastAPI, NestJS, and AWS Bedrock (Claude 3.5 Sonnet); RAG pipeline over financial reports</li>
+          <li style="padding: 0.2rem 0; text-indent: -1.1rem; padding-left: 1.1rem;">&mdash;&nbsp;Engineered quantitative data pipelines integrating C++ calculation engine (Docker); peer group analytics with Pandas/NumPy and PostgreSQL</li>
+          <li style="padding: 0.2rem 0; text-indent: -1.1rem; padding-left: 1.1rem;">&mdash;&nbsp;Enabled tier-one institutional rollouts for Soci&eacute;t&eacute; G&eacute;n&eacute;rale, RBC, and Schroders; migrated ESLint to Oxlint for 10x faster CI</li>
+        </ul>
+      </div>
+
+      <!-- KM.ON -->
+      <div class="bordered-bottom" style="padding: 1.25rem 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.25rem;">
+          <h3>KM.ON Asia Limited</h3>
+          <span class="meta">Jul 2023 &ndash; Feb 2025</span>
+        </div>
+        <span class="meta" style="display: block; margin-bottom: 0.75rem;">Junior Full Stack Developer &middot; Hong Kong</span>
+        <ul style="list-style: none; padding: 0;">
+          <li style="padding: 0.2rem 0; text-indent: -1.1rem; padding-left: 1.1rem;">&mdash;&nbsp;Architected full-stack React.js/Express.js energy platform across AWS (EU) and Alibaba Cloud (China); Terraform IaC, ArgoCD, Helm with GDPR/PIPL compliance</li>
+          <li style="padding: 0.2rem 0; text-indent: -1.1rem; padding-left: 1.1rem;">&mdash;&nbsp;Engineered two-tier fan-out Python/Lambda pipeline ingesting 1.5 TB of raw IoT logs; TimescaleDB hypertables at 2,000+ ops/sec</li>
+          <li style="padding: 0.2rem 0; text-indent: -1.1rem; padding-left: 1.1rem;">&mdash;&nbsp;Executed live migration to Strimzi Kafka/Karapace; custom KafkaConnectors processing 10M+ messages daily with DLQ</li>
+          <li style="padding: 0.2rem 0; text-indent: -1.1rem; padding-left: 1.1rem;">&mdash;&nbsp;Integrated SBOM generation and Trivy scans into CI/CD for 15+ microservices</li>
+        </ul>
+      </div>
+
+      <!-- Reap -->
+      <div class="bordered-bottom" style="padding: 1.25rem 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.25rem;">
+          <h3>Reap Technologies</h3>
+          <span class="meta">Jun 2022 &ndash; Sep 2022</span>
+        </div>
+        <span class="meta" style="display: block; margin-bottom: 0.75rem;">Software Engineer Intern &middot; Hong Kong</span>
+        <ul style="list-style: none; padding: 0;">
+          <li style="padding: 0.2rem 0; text-indent: -1.1rem; padding-left: 1.1rem;">&mdash;&nbsp;Migrated legacy monolithic codebase into Controller-Service-Repository architecture using TDD</li>
+          <li style="padding: 0.2rem 0; text-indent: -1.1rem; padding-left: 1.1rem;">&mdash;&nbsp;Engineered integration test suites with Docker scaffolding and mocked services</li>
+        </ul>
+      </div>
+
+      <!-- BNP Paribas -->
+      <div style="padding: 1.25rem 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.25rem;">
+          <h3>BNP Paribas CIB</h3>
+          <span class="meta">Feb 2021 &ndash; Aug 2021</span>
+        </div>
+        <span class="meta" style="display: block; margin-bottom: 0.75rem;">IT Strategist (Contract) &middot; Hong Kong</span>
+        <ul style="list-style: none; padding: 0;">
+          <li style="padding: 0.2rem 0; text-indent: -1.1rem; padding-left: 1.1rem;">&mdash;&nbsp;Engineered distributed fan-out data replication engine in Python across 200+ nodes</li>
+          <li style="padding: 0.2rem 0; text-indent: -1.1rem; padding-left: 1.1rem;">&mdash;&nbsp;Designed Kafka/Elasticsearch ingestion pipeline for sub-second dashboard refreshes on trading logs</li>
+          <li style="padding: 0.2rem 0; text-indent: -1.1rem; padding-left: 1.1rem;">&mdash;&nbsp;Optimized multi-threaded C++ packet replay engine using non-blocking condition variables</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="container section-divider" />
+
+  <!-- ═══════════ SKILLS ═══════════ -->
+  <section id="skills" class="container section-block">
+    <span class="meta" style="display: block; margin-bottom: 1.5rem;">Skills</span>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      {['TypeScript','Python','Java','Scala','Kotlin','Go','SQL','Vue.js','React','Nest.js','Spring','Ktor','Flask','FastAPI','AWS','Alibaba Cloud','Docker','Kubernetes','ArgoCD','Kafka','PostgreSQL','MongoDB','Redis','Elasticsearch','Terraform','Helm','AWS Bedrock','RAG','Vector DBs','GitOps','CI/CD','Microservices','Event-Driven','CQRS'].map(skill => (
+        <span class="btn" style="padding: 0.3em 0.8em; font-size: var(--text-meta); text-transform: uppercase;">{skill}</span>
+      ))}
+    </div>
+  </section>
+
+  <hr class="container section-divider" />
+
+  <!-- ═══════════ PROJECTS ═══════════ -->
+  <section id="projects" class="container section-block">
+    <span class="meta" style="display: block; margin-bottom: 1.5rem;">Projects</span>
+
+    <div class="bordered" style="border-top: none;">
+      <div class="bordered-bottom" style="padding: 1.25rem 1rem;">
+        <h3>Homelab</h3>
+        <span class="meta" style="display: block; margin: 0.25rem 0 0.75rem;">2025 &ndash; Present</span>
+        <p style="margin-bottom: 0.75rem;">20+ self-hosted services with Golang deployment tooling and Tailscale networking. Zero-exposure mesh VPN, Pi-hole, Caddy reverse proxy. Multi-layer observability with VictoriaMetrics, Loki, Grafana.</p>
+        <a href="https://github.com/viscory" target="_blank" rel="noopener">GitHub</a>
+      </div>
+
+      <div class="bordered-bottom" style="padding: 1.25rem 1rem;">
+        <h3>paperless-py</h3>
+        <span class="meta" style="display: block; margin: 0.25rem 0 0.75rem;">2025</span>
+        <p style="margin-bottom: 0.75rem;">Extract documents from Google Takeout archives for Paperless-ngx. Skips media, trash, and exam papers. Python tooling for automated document ingestion.</p>
+        <a href="https://github.com/viscory/paperless-py" target="_blank" rel="noopener">GitHub</a>
+      </div>
+
+      <div class="bordered-bottom" style="padding: 1.25rem 1rem;">
+        <h3>reciprocus</h3>
+        <span class="meta" style="display: block; margin: 0.25rem 0 0.75rem;">2021 &ndash; 2022</span>
+        <p style="margin-bottom: 0.75rem;">Final year project. A blockchain implementation in Go using Proof of Work + Sincerity consensus.</p>
+        <a href="https://github.com/viscory/reciprocus" target="_blank" rel="noopener">GitHub</a>
+      </div>
+
+      <div style="padding: 1.25rem 1rem;">
+        <h3>chirper</h3>
+        <span class="meta" style="display: block; margin: 0.25rem 0 0.75rem;">2023</span>
+        <p style="margin-bottom: 0.75rem;">Twitter-like social platform built with JavaScript.</p>
+        <a href="https://github.com/viscory/chirper" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="container section-divider" />
+
+  <!-- ═══════════ EDUCATION ═══════════ -->
+  <section id="education" class="container section-block">
+    <span class="meta" style="display: block; margin-bottom: 1.5rem;">Education</span>
+    <div class="bordered" style="padding: 1.5rem 1.25rem; display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;">
+      <img src="/assets/school-logo-1x.png" alt="CUHK" width="80" style="filter: grayscale(1); border: 1px solid var(--color-fg); flex-shrink: 0;" />
+      <div>
+        <h3>The Chinese University of Hong Kong</h3>
+        <p>B.Sc. in Computer Science &middot; Second Class Honours (2:1) &middot; Sep 2018 &ndash; Jun 2023</p>
+        <div style="margin-top: 0.5rem;">
+          <span class="meta" style="display: block;">Concentration: Database and Information Systems</span>
+          <span class="meta" style="display: block;">Full Ride Admission Scholarship &middot; The 'Sunny' Award</span>
+          <span class="meta" style="display: block;">English Debating Team &middot; Google Developers Student Club</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- spacer after last section -->
+  <div style="height: 3rem;"></div>
+
+</Layout>
