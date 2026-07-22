@@ -14,7 +14,7 @@ All notable changes to this project are documented here.
 - `.husky/pre-commit`: Removed hardcoded pnpm version, uses `mise exec --` from `mise.toml`; now lists changed files when CHANGELOG not staged; validates every staged file is mentioned in CHANGELOG entry
 - `.github/workflows/ci.yml`: Bump Node 20→22 (pnpm 11 requires Node 22.13+)
 - `.nojekyll`: Restored at repo root (prevents GitHub Pages Jekyll build on source branch)
-- `pnpm-workspace.yaml`: Added with `onlyBuiltDependencies: [esbuild, sharp]` (pnpm 11 blocks all builds by default)
+- `.npmrc`: Added with `only-built-dependencies=esbuild,sharp` (pnpm 11 blocks all builds by default, needed for CI)
 - Mood button SVGs replaced with Remixicon `<i>` elements
 - CSS updated: `#chat-btn i` instead of `#chat-btn svg` for styling
 
