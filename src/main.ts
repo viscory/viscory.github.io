@@ -2,14 +2,12 @@
 const hudTime = document.getElementById("hud-time")!;
 function tick() {
   const now = new Date();
-  const hh = String(now.getHours()).padStart(2, "0");
-  const mm = String(now.getMinutes()).padStart(2, "0");
-  hudTime.textContent = `${hh}:${mm} HKT`;
+  hudTime.textContent = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")} HKT`;
 }
 tick();
 setInterval(tick, 1000);
 
-// ── Rain Particles ──
+// ── Background Canvas (Rain + Meteors) ──
 const c = document.getElementById("bg") as HTMLCanvasElement;
 const ctx = c.getContext("2d")!;
 let W: number, H: number;
@@ -20,14 +18,7 @@ function resize() {
 resize();
 addEventListener("resize", resize);
 
-interface Drop {
-  x: number;
-  y: number;
-  l: number;
-  s: number;
-  o: number;
-}
-const drops: Drop[] = Array.from({ length: 150 }, () => ({
+const drops = Array.from({ length: 150 }, () => ({
   x: Math.random() * W,
   y: Math.random() * H,
   l: 10 + Math.random() * 15,
@@ -52,16 +43,14 @@ function drawRain() {
   }
 }
 
-// ── Shooting Stars ──
-interface Meteor {
+const meteors: Array<{
   x: number;
   y: number;
   dx: number;
   dy: number;
   life: number;
   trail: number;
-}
-const meteors: Meteor[] = [];
+}> = [];
 let meteorTimer = 0;
 
 function spawnMeteor() {
@@ -106,7 +95,7 @@ animate();
 // ── Section Tracking ──
 const sections = document.querySelectorAll<HTMLElement>("section");
 const navLinks = document.querySelectorAll<HTMLAnchorElement>("#nav a");
-const obs = new IntersectionObserver(
+new IntersectionObserver(
   (entries) => {
     for (const e of entries) {
       if (e.isIntersecting) {
@@ -116,15 +105,24 @@ const obs = new IntersectionObserver(
     }
   },
   { threshold: 0.3, rootMargin: "0px 0px -10% 0px" },
-);
-sections.forEach((s) => obs.observe(s));
+).observe(sections[0]); // observe all
+sections.forEach((s) => {
+  new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) e.target.classList.add("visible");
+      }
+    },
+    { threshold: 0.1 },
+  ).observe(s);
+});
 
 // ── Scroll Arrow ──
 const arrow = document.getElementById("scroll-arrow")!;
 let arrowHidden = false;
-arrow.addEventListener("click", () => {
-  document.getElementById("about")!.scrollIntoView({ behavior: "smooth" });
-});
+arrow.addEventListener("click", () =>
+  document.getElementById("about")!.scrollIntoView({ behavior: "smooth" }),
+);
 addEventListener(
   "scroll",
   () => {
@@ -139,109 +137,153 @@ addEventListener(
   { passive: true },
 );
 
-// ── Fade-in Sections ──
-const fadeObs = new IntersectionObserver(
-  (entries) => {
-    for (const e of entries) {
-      if (e.isIntersecting) e.target.classList.add("visible");
-    }
+// ── Chat Button FSM ──
+type Mood = "IDLE" | "HAPPY" | "ANGRY" | "SLEEPY" | "JUMPY";
+interface MoodState {
+  svg: string;
+  anim: string;
+  transitions: Array<{ to: Mood; prob: number }>;
+  onActivate?: () => void;
+}
+
+const SVGS: Record<Mood, string> = {
+  IDLE: '<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>',
+  HAPPY:
+    '<path d="M7 14a5 5 0 0 0 10 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="10" r="1.5" fill="currentColor"/><circle cx="15" cy="10" r="1.5" fill="currentColor"/>',
+  ANGRY: '<path d="M13 2L4 14h6v8l10-12h-6z" fill="currentColor"/>',
+  SLEEPY:
+    '<path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" fill="currentColor"/><text x="16" y="10" font-size="6" font-weight="700" fill="currentColor">z</text>',
+  JUMPY: '<path d="M12 2l8 10h-5v10H9V12H4z" fill="currentColor"/>',
+};
+
+const FSM: Record<Mood, MoodState> = {
+  IDLE: {
+    svg: SVGS.IDLE,
+    anim: "",
+    transitions: [
+      { to: "HAPPY", prob: 0.25 },
+      { to: "ANGRY", prob: 0.1 },
+      { to: "SLEEPY", prob: 0.2 },
+      { to: "JUMPY", prob: 0.15 },
+      { to: "IDLE", prob: 0.3 },
+    ],
   },
-  { threshold: 0.1 },
+  HAPPY: {
+    svg: SVGS.HAPPY,
+    anim: "chat-happy",
+    transitions: [
+      { to: "IDLE", prob: 0.35 },
+      { to: "JUMPY", prob: 0.3 },
+      { to: "SLEEPY", prob: 0.2 },
+      { to: "ANGRY", prob: 0.15 },
+    ],
+    onActivate: () => {
+      btn.style.transform = "";
+      btn.style.left = "";
+      btn.style.right = "";
+      btn.style.bottom = "";
+      btn.style.top = "";
+    },
+  },
+  ANGRY: {
+    svg: SVGS.ANGRY,
+    anim: "chat-angry",
+    transitions: [
+      { to: "IDLE", prob: 0.3 },
+      { to: "JUMPY", prob: 0.25 },
+      { to: "HAPPY", prob: 0.25 },
+      { to: "SLEEPY", prob: 0.2 },
+    ],
+    onActivate: () => {
+      if (mx || my) {
+        btn.style.transition = "left .3s,top .3s";
+        btn.style.left = `${Math.max(0, Math.min(innerWidth - 44, mx! - 22))}px`;
+        btn.style.top = `${Math.max(0, Math.min(innerHeight - 44, my! - 22))}px`;
+        btn.style.bottom = "auto";
+        btn.style.right = "auto";
+      }
+    },
+  },
+  SLEEPY: {
+    svg: SVGS.SLEEPY,
+    anim: "chat-sleepy",
+    transitions: [
+      { to: "IDLE", prob: 0.5 },
+      { to: "HAPPY", prob: 0.25 },
+      { to: "JUMPY", prob: 0.15 },
+      { to: "ANGRY", prob: 0.1 },
+    ],
+    onActivate: () => {
+      btn.style.transform = "";
+      btn.style.left = "";
+      btn.style.right = "";
+      btn.style.bottom = "";
+      btn.style.top = "";
+    },
+  },
+  JUMPY: {
+    svg: SVGS.JUMPY,
+    anim: "chat-jumpy",
+    transitions: [
+      { to: "HAPPY", prob: 0.3 },
+      { to: "IDLE", prob: 0.25 },
+      { to: "ANGRY", prob: 0.25 },
+      { to: "SLEEPY", prob: 0.2 },
+    ],
+    onActivate: () => {
+      btn.style.transition = "left .12s,top .12s";
+      btn.style.left = `${Math.random() * (innerWidth - 44)}px`;
+      btn.style.top = `${Math.random() * (innerHeight - 44)}px`;
+      btn.style.bottom = "auto";
+      btn.style.right = "auto";
+    },
+  },
+};
+
+let mood: Mood = "IDLE";
+let mx: number | null = null;
+let my: number | null = null;
+let gagClicks = 0;
+
+const btn = document.getElementById("chat-btn")!;
+const svgEl = btn.querySelector("svg")!;
+
+// Track mouse for ANGRY chase
+document.addEventListener("mousemove", (e) => {
+  mx = e.clientX;
+  my = e.clientY;
+});
+
+function pickTransition(from: Mood): Mood {
+  const t = FSM[from].transitions;
+  let r = Math.random();
+  for (const { to, prob } of t) {
+    r -= prob;
+    if (r <= 0) return to;
+  }
+  return t[t.length - 1].to;
+}
+
+function setMood(m: Mood) {
+  mood = m;
+  const state = FSM[m];
+  btn.className = "";
+  if (state.anim) btn.classList.add(state.anim);
+  svgEl.innerHTML = state.svg;
+  state.onActivate?.();
+}
+
+btn.addEventListener("click", () => {
+  gagClicks++;
+  // Every 4 clicks force JUMPY as a treat
+  const next = gagClicks % 4 === 0 ? ("JUMPY" as Mood) : pickTransition(mood);
+  setMood(next);
+});
+
+// Idle auto-transitions every 4-8 seconds
+setInterval(
+  () => {
+    if (Math.random() < 0.35) setMood(pickTransition(mood));
+  },
+  4000 + Math.random() * 4000,
 );
-document.querySelectorAll(".fade-in").forEach((el) => {
-  if (!el.classList.contains("visible")) fadeObs.observe(el);
-});
-
-// ── Chat Button Gag ──
-const chatBtn = document.getElementById("chat-btn")!;
-let gagLevel = 0;
-const gags = ["chat-shake", "chat-flip", "chat-boom", "chat-spin"];
-
-chatBtn.addEventListener("click", () => {
-  chatBtn.className = "";
-  void chatBtn.offsetWidth; // reflow
-
-  const anim = gags[gagLevel % gags.length];
-  chatBtn.classList.add(anim);
-
-  // Random color flash
-  if (gagLevel >= 2) {
-    chatBtn.style.background = ["#fff", "#888", "#333"][gagLevel % 3];
-    chatBtn.style.color = "#000";
-    setTimeout(() => {
-      chatBtn.style.background = "";
-      chatBtn.style.color = "";
-    }, 600);
-  }
-
-  // Random position teleport
-  if (gagLevel >= 3) {
-    const maxW = innerWidth - 60;
-    const maxH = innerHeight - 60;
-    chatBtn.style.position = "fixed";
-    chatBtn.style.bottom = `${Math.random() * maxH}px`;
-    chatBtn.style.right = `${Math.random() * maxW}px`;
-  }
-
-  gagLevel++;
-  if (gagLevel >= 8) gagLevel = 0;
-});
-
-// ── Data Flow Graph ──
-const fc = document.getElementById("flow-canvas") as HTMLCanvasElement;
-const fctx = fc.getContext("2d")!;
-const flowNodes = ["SOURCES", "INGEST", "STREAM", "PROCESS", "STORE", "SERVE"];
-let flowT = 0;
-
-function resizeFlow() {
-  const r = fc.parentElement!.getBoundingClientRect();
-  fc.width = Math.min(r.width - 2, 680);
-  fc.height = 100;
-}
-resizeFlow();
-addEventListener("resize", resizeFlow);
-
-function drawFlow() {
-  const w = fc.width,
-    h = fc.height;
-  fctx.clearRect(0, 0, w, h);
-  const cw = Math.min(70, w / flowNodes.length - 12);
-  const gap = Math.min(16, w / flowNodes.length - cw);
-  const startX = (w - (flowNodes.length * (cw + gap) - gap)) / 2;
-  const y = h / 2 - 12;
-
-  for (let i = 0; i < flowNodes.length; i++) {
-    const x = startX + i * (cw + gap);
-    fctx.strokeStyle = "#333";
-    fctx.lineWidth = 1;
-    fctx.strokeRect(x, y, cw, 24);
-    fctx.fillStyle = "#555";
-    fctx.font = "10px system-ui,sans-serif";
-    fctx.textAlign = "center";
-    fctx.textBaseline = "middle";
-    fctx.fillText(flowNodes[i], x + cw / 2, y + 12);
-
-    if (i < flowNodes.length - 1) {
-      const nx = x + cw,
-        ny = y + 12,
-        ex = x + cw + gap;
-      fctx.beginPath();
-      fctx.moveTo(nx, ny);
-      fctx.lineTo(ex - 6, ny - 4);
-      fctx.lineTo(ex - 6, ny + 4);
-      fctx.closePath();
-      fctx.fillStyle = "#333";
-      fctx.fill();
-
-      const t = (flowT + i * 20) % 60;
-      const px = nx + (ex - nx) * (t / 60);
-      fctx.beginPath();
-      fctx.arc(px, ny, 2.5, 0, Math.PI * 2);
-      fctx.fillStyle = "rgba(255,255,255,.6)";
-      fctx.fill();
-    }
-  }
-  flowT = (flowT + 1) % 60;
-  requestAnimationFrame(drawFlow);
-}
-drawFlow();

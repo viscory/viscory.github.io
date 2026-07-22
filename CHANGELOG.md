@@ -6,6 +6,21 @@ All notable changes to this project are documented here.
 
 ### Changed
 
+- Chat button is now a Finite State Machine with moods (IDLE, HAPPY, ANGRY, SLEEPY, JUMPY) — each mood has its own icon, animation, and probability-weighted transitions
+- Button auto-transitions moods every 4-8 seconds without clicking
+- ANGRY mood chases the cursor (moves towards mouse position)
+- JUMPY mood teleports the button to random screen positions
+- Every 4th click forces JUMPY mood
+- Resume link now points to local PDF (`assets/resume.pdf`) instead of Google Docs
+- Added 3 more projects: paperless-py, reciprocus, chirper
+- Removed data flow canvas from About section (was "weird thing")
+- Fixed bullet point indentation — wrapped lines now align under text, not under the dash
+- Skills tags use `white-space: nowrap` to prevent word splitting
+
+### Changed
+
+- Chat button is now a gag
+
 - Chat button is now a gag: shakes, flips, explodes, and teleports on repeated clicks (4 escalating animations)
 - Removed stats grid from About section (mean meaningless numbers)
 - Removed section-art SVGs (weird boxes in experience/skills)
