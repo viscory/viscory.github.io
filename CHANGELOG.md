@@ -10,6 +10,8 @@ All notable changes to this project are documented here.
 - Mood button: BOLT and ROCKET moods now always use CSS transitions instead of instant position changes (no teleporting)
 - Added `padding-bottom: 0.5rem` under hero link buttons
 - Switched Remixicon CDN from jsDelivr (MIME type issue) to cdnjs for reliable CSS serving
+- Fixed reciprocus icon class: `ri-bitcoin-line` → `ri-bit-coin-line` (correct Remixicon class name)
+- Pre-commit hook: removed hardcoded pnpm version, uses `mise exec --` with version from `mise.toml`
 - Mood button SVGs replaced with Remixicon `<i>` elements
 - CSS updated: `#chat-btn i` instead of `#chat-btn svg` for styling
 

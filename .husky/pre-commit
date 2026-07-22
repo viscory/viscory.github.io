@@ -1,17 +1,17 @@
 #!/bin/sh
 cd "$(dirname "$0")/.." || exit 1
-PNPM="mise exec pnpm@11.15.1 --"
+mise install 2>/dev/null || true
 
 echo "=== Pre-commit ==="; errors=0
 
 echo "→ Lint CSS…"
-$PNPM pnpm run lint:css || { echo "  ✗ Stylelint failed"; errors=$((errors+1)); }
+mise exec -- pnpm run lint:css || { echo "  ✗ Stylelint failed"; errors=$((errors+1)); }
 
 echo "→ Format check…"
-$PNPM pnpm run format || { echo "  ✗ Prettier check failed (run pnpm run format:fix)"; errors=$((errors+1)); }
+mise exec -- pnpm run format || { echo "  ✗ Prettier check failed (run pnpm run format:fix)"; errors=$((errors+1)); }
 
 echo "→ Building…"
-$PNPM pnpm run build || { echo "  ✗ Build failed"; errors=$((errors+1)); }
+mise exec -- pnpm run build || { echo "  ✗ Build failed"; errors=$((errors+1)); }
 
 echo "→ CHANGELOG…"
 if git diff --cached --exit-code CHANGELOG.md >/dev/null 2>&1; then
