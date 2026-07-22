@@ -9,7 +9,7 @@ All notable changes to this project are documented here.
 - Replaced all hardcoded SVG icons with Remixicon CDN (`remixicon@4.6.0`) — hero links, project icons, mood button all use `ri-*` classes
 - Mood button: BOLT and ROCKET moods now always use CSS transitions instead of instant position changes (no teleporting)
 - Added `padding-bottom: 0.5rem` under hero link buttons
-- `src/layouts/Layout.astro`: Switched Remixicon CDN from jsDelivr to cdnjs for reliable MIME type, updated to v4.9.1
+- `src/layouts/Layout.astro`: Switched Remixicon CDN from jsDelivr to cdnjs v4.6.0 (v4.9.1 404'd on cdnjs)
 - `src/pages/index.astro`: Fixed reciprocus icon class `ri-bitcoin-line` → `ri-bit-coin-line` (correct Remixicon name)
 - `.husky/pre-commit`: Removed hardcoded pnpm version, uses `mise exec --` from `mise.toml`; now lists changed files when CHANGELOG not staged; validates every staged file is mentioned in CHANGELOG entry
 - Mood button SVGs replaced with Remixicon `<i>` elements
