@@ -4,7 +4,22 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
+### Changed
+
+- Build output now goes to `dist/` — served locally on `localhost:8080` and deployed to GitHub Pages via CI
+- HUD now shows live Hong Kong time (HH:MM HKT) instead of name
+- Stats: 5+ YoE (includes internships)
+- CUHK logo now uses actual school logo image (`school-logo-1x.png`)
+- KM.ON timeline item now shows company logo (`unnamed.png`)
+- FAQ rewritten to be concise and natural
+- Removed stale `public/main.js` (output now goes to `dist/`)
+- `.nojekyll` placed in `dist/` during build
+
 ### Fixed
+
+- FOUC prevention code (inline script + body display:none) was hiding page content and never showing it back, resulting in white screen
+- CSS was orphaned outside `<style>` tags after edit tool replacement — restructured so all CSS is properly inside the style block
+- Removed orphaned `public/main.css` (CSS is inline in index.html)
 
 - FOUC prevention code (inline script + body display:none) was hiding page content and never showing it back, resulting in white screen
 - CSS was orphaned outside `<style>` tags after edit tool replacement — restructured so all CSS is properly inside the style block

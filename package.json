@@ -2,8 +2,8 @@
   "name": "viscory.github.io",
   "private": true,
   "scripts": {
-    "dev": "bun build src/main.ts --outdir=public --target=browser --watch & bun x serve public -p 8000 & wait",
-    "build": "bun build src/main.ts --outdir=public --target=browser --minify",
+    "build": "bun build src/main.ts --outdir=dist --target=browser --minify && cp public/index.html dist/ && cp -r assets dist/ && touch dist/.nojekyll",
+    "dev": "bun build src/main.ts --outdir=dist --target=browser --watch & while true; do cp public/index.html dist/ 2>/dev/null; sleep 0.5; done & bun x serve dist -p 8080 & wait",
     "lint": "bun x oxlint@latest src/main.ts",
     "validate": "bash scripts/validate.sh",
     "check": "bun run lint && bun run build && bun run validate"

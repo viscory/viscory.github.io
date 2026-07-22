@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Faiyaz Rahman</title>
-<style>:root{--bg:#000;--heading:#eee;--body:#888;--link:#666;--label:#555;--border:#333;--subtle:#222}
+<style>
+:root{--bg:#000;--heading:#eee;--body:#888;--link:#666;--label:#555</title>;--border:#333;--subtle:#222}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{background:var(--bg);color:var(--body);font-family:system-ui,-apple-system,sans-serif;scroll-behavior:smooth}
 body{background:var(--bg);min-height:100vh;overflow-x:hidden}
@@ -25,9 +26,9 @@ section{padding:100px 24px;position:relative;z-index:2}
 .cube .r{transform:rotateY(90deg) translateZ(100px)}.cube .l{transform:rotateY(-90deg) translateZ(100px)}
 .cube .t{transform:rotateX(90deg) translateZ(100px)}.cube .d{transform:rotateX(-90deg) translateZ(100px)}
 @keyframes spin{0%{transform:rotateX(-20deg) rotateY(0)}100%{transform:rotateX(-20deg) rotateY(360deg)}}
-#hud{position:fixed;top:24px;left:24px;z-index:10;pointer-events:none}
-#hud .name{font-size:14px;font-weight:600;color:var(--heading);letter-spacing:-.01em}
-#hud .section-name{font-size:12px;color:var(--label);margin-top:2px;transition:opacity .3s}
+#hud{position:fixed;top:24px;left:24px;z-index:10;pointer-events:none;font-size:13px;color:var(--label)}
+#hud .time{font-size:14px;font-weight:600;color:var(--heading);font-variant-numeric:tabular-nums}
+#hud .loc{font-size:11px;color:var(--label);margin-top:1px}
 #nav{position:fixed;top:50%;right:20px;transform:translateY(-50%);z-index:10;display:flex;flex-direction:column;gap:10px}
 #nav a{width:8px;height:8px;border-radius:50%;border:1px solid var(--border);background:transparent;display:block;transition:all .3s}
 #nav a.active{background:var(--heading);border-color:var(--heading)}
@@ -55,12 +56,14 @@ section{padding:100px 24px;position:relative;z-index:2}
 .timeline-item{position:relative;padding-bottom:48px}
 .timeline-item:last-child{padding-bottom:0}
 .timeline-item .dot{position:absolute;left:-24px;top:4px;width:15px;height:15px;display:flex;align-items:center;justify-content:center}
+.timeline-item .dot img{width:100%;height:100%;border-radius:2px;filter:grayscale(1)}
 .timeline-item .dot svg{width:100%;height:100%}
 .timeline-item h3{font-size:16px;margin-bottom:2px}
 .timeline-item .meta{font-size:12px;color:var(--label);margin-bottom:6px}
 .timeline-item ul{list-style:none;padding:0}
 .timeline-item li{font-size:13px;color:var(--body);padding:1.5px 0;line-height:1.5}
 .timeline-item li::before{content:'\2013\00a0';color:var(--label)}
+.timeline-logo{width:18px;height:18px;margin-right:6px;vertical-align:middle;border-radius:2px;filter:grayscale(1)}
 #skills{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
 .skills-cloud{display:flex;flex-wrap:wrap;gap:8px;max-width:560px}
 .skills-cloud span{padding:5px 12px;border:1px solid var(--subtle);border-radius:4px;font-size:12px;color:var(--body);transition:all .2s}
@@ -68,9 +71,6 @@ section{padding:100px 24px;position:relative;z-index:2}
 #projects{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
 .project-card{padding:20px;border:1px solid var(--subtle);border-radius:6px;margin-bottom:16px;transition:border-color .2s;position:relative}
 .project-card:hover{border-color:var(--border)}
-.project-card .project-inner{display:flex;gap:16px;align-items:flex-start}
-.project-card .project-icon{flex-shrink:0;width:40px;height:40px;margin-top:2px}
-.project-card .project-icon svg{width:100%;height:100%}
 .project-card h3{font-size:15px;margin-bottom:4px}
 .project-card .desc{font-size:13px;color:var(--body);margin-bottom:8px;line-height:1.5}
 .project-card .tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
@@ -79,8 +79,8 @@ section{padding:100px 24px;position:relative;z-index:2}
 #education{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
 .edu-card{padding:24px;border:1px solid var(--subtle);border-radius:6px}
 .edu-card .edu-inner{display:flex;gap:20px;align-items:flex-start}
-.edu-card .edu-icon{flex-shrink:0;width:60px;height:60px}
-.edu-card .edu-icon svg{width:100%;height:100%}
+.edu-card .edu-icon{flex-shrink:0;width:80px;height:auto}
+.edu-card .edu-icon img{width:100%;height:auto;filter:grayscale(1)}
 .edu-card h3{font-size:16px;margin-bottom:2px}
 .edu-card .meta{font-size:13px;color:var(--body);margin-bottom:4px}
 .edu-card .detail{font-size:12px;color:var(--label);line-height:1.5}
@@ -106,13 +106,10 @@ section{padding:100px 24px;position:relative;z-index:2}
   #about .stats{grid-template-columns:repeat(2,1fr)}
   #nav{right:10px;gap:8px}
   #nav a{width:6px;height:6px}
-  #hud{left:12px}
+  #hud{left:12px;font-size:12px}
   #chat-panel{width:calc(100vw - 32px);right:16px;bottom:76px}
   .cube-wrap{opacity:.06}
-  .timeline-item h3{font-size:15px}
   .edu-card .edu-inner{flex-direction:column;align-items:center;text-align:center}
-  .project-card .project-inner{flex-direction:column;align-items:flex-start}
-  .project-card .project-icon{width:32px;height:32px}
 }
 </style>
 </head>
@@ -127,8 +124,8 @@ section{padding:100px 24px;position:relative;z-index:2}
 </div></div>
 
 <div id="hud">
-  <div class="name">FAIYAZ RAHMAN</div>
-  <div class="section-name" id="cur-section">Full Stack Developer</div>
+  <div class="time" id="hud-time">--:-- HKT</div>
+  <div class="loc">Hong Kong</div>
 </div>
 
 <div id="nav">
@@ -150,7 +147,7 @@ section{padding:100px 24px;position:relative;z-index:2}
     <h1>Faiyaz Rahman</h1>
     <p class="tagline">Full-stack developer building systems across AI, infrastructure, and product</p>
     <div class="links">
-      <a href="mailto:faiman.rahyaz@gmail.com" target="_blank" rel="noopener">Email</a>
+      <a href="mailto</h1>:faiman.rahyaz@gmail.com" target="_blank" rel="noopener">Email</a>
       <a href="https://github.com/viscory" target="_blank" rel="noopener">GitHub</a>
       <a href="https://linkedin.com/in/faiyazr" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://docs.google.com/document/d/12UwAGKPOlG3jmRZr2tO2BVqtX4pYZhmm6TAyGBRDEBQ/edit?usp=sharing" target="_blank" rel="noopener">Resume</a>
@@ -162,10 +159,10 @@ section{padding:100px 24px;position:relative;z-index:2}
   <div class="section-row">
     <div class="section-content">
       <div class="section-label">About</div>
-      <p class="bio">Full-stack developer with 4+ years delivering systems across AI, infrastructure, and product. Architected multi-cloud fintech platforms, scaled Kafka to 1.5M+ messages/day, built Bedrock/RAG pipelines for quantitative reporting. Comfortable in TypeScript APIs, Vue/React UIs, and the GitOps glue between them.</p>
+      <p class="bio">Full-stack developer with 5+ years delivering systems across AI, infrastructure, and product. Architected multi-cloud fintech platforms, scaled Kafka to 1.5M+ messages/day, built Bedrock/RAG pipelines for quantitative reporting. Comfortable in TypeScript APIs, Vue/React UIs, and the GitOps glue between them.</p>
       <div class="stats">
-        <div class="stat"><span class="stat-num">4+</span><span class="stat-lbl">Years</span></div>
-        <div class="stat"><span class="stat-num">1.5M+</span><span class="stat-lbl">Msg / Day</span></div>
+        <div class="stat"><span class="stat-num">5+</span><span class="stat-lbl">Years Exp.</span></div>
+        <div class="stat"><span class="stat-num">1.5M+</span><span class="stat-lbl">Msgs / Day</span></div>
         <div class="stat"><span class="stat-num">15+</span><span class="stat-lbl">Microservices</span></div>
         <div class="stat"><span class="stat-num">Multi</span><span class="stat-lbl">Cloud</span></div>
       </div>
@@ -181,18 +178,18 @@ section{padding:100px 24px;position:relative;z-index:2}
       <div class="timeline">
         <div class="timeline-item">
           <div class="dot"><svg viewBox="0 0 15 15"><rect x="1.5" y="1.5" width="12" height="12" rx="1.5" fill="none" stroke="#eee" stroke-width="1"/><line x1="1.5" y1="6" x2="13.5" y2="6" stroke="#222" stroke-width="0.5"/><line x1="1.5" y1="10" x2="13.5" y2="10" stroke="#222" stroke-width="0.5"/><line x1="6" y1="1.5" x2="6" y2="13.5" stroke="#222" stroke-width="0.5"/><line x1="10" y1="1.5" x2="10" y2="13.5" stroke="#222" stroke-width="0.5"/><circle cx="4" cy="4" r="1" fill="#eee"/></svg></div>
-          <h3>Full Stack Developer &middot; Premialab</h3>
+          <h3>Full Stack Developer &middot;</h3> Premialab</h3>
           <div class="meta">Apr 2025 &ndash; Present &middot; Hong Kong</div>
           <ul>
-            <li>Built a sub-300ms hybrid search screener over 100k+ instruments using pgvector/HNSW with Titan dense embeddings + BM25 sparse via RRF; ag-Grid frontend with virtualized rows</li>
-            <li>Architected modular CRUD persistence engine with Vue.js, FastAPI, NestJS, and AWS Bedrock (Claude 3.5 Sonnet); RAG pipeline over financial reports for automated commentary</li>
-            <li>Engineered quantitative data pipelines integrating C++ calculation engine (Docker); built peer group analytics with Pandas/NumPy and PostgreSQL</li>
-            <li>Enabled tier-one institutional rollouts for Soci&eacute;t&eacute; G&eacute;n&eacute;rale, RBC, and Schroders; migrated ESLint to Oxlint for 10x faster CI</li>
+            <li>Built a sub-300ms hybrid search screener over 100k+ instruments using pgvector/H</li>NSW with Titan dense embeddings + BM25 sparse via RRF; ag-Grid frontend with virtualized rows</li>
+            <li>Architected modular CRUD persistence engine with Vue.js, FastAPI, NestJS, and AWS Bedrock (</li>Claude 3.5 Sonnet); RAG pipeline over financial reports for automated commentary</li>
+            <li>Engineered quantitative data pipelines integrating C++ calculation</li> engine (Docker); built peer group analytics with Pandas/NumPy and PostgreSQL</li>
+            <li></li>Enabled tier-one institutional rollouts for Soci&eacute;t&eacute; G&eacute;n&eacute;rale, RBC, and Schroders; migrated ESLint to Oxlint for 10x faster CI</li>
           </ul>
         </div>
         <div class="timeline-item">
-          <div class="dot"><svg viewBox="0 0 15 15"><path d="M7.5 2 L13 7.5 L7.5 13 L2 7.5 Z" fill="none" stroke="#555" stroke-width="1"/><path d="M3 7.5 Q5 5.5, 7.5 7.5 T12 7.5" fill="none" stroke="#eee" stroke-width="0.75"/><circle cx="3" cy="9" r="1" fill="#555"/><circle cx="12" cy="6" r="1" fill="#888"/></svg></div>
-          <h3>Junior Full Stack Developer &middot; KM.ON Asia Limited</h3>
+          <div class="dot"><img src="assets/unnamed.png" alt="KM.ON"></div>
+          <h3><img src="assets/unnamed.png</h3>" alt="" class="timeline-logo"> Junior Full Stack Developer &middot; KM.ON Asia Limited</h3>
           <div class="meta">Jul 2023 &ndash; Feb 2025 &middot; Hong Kong</div>
           <ul>
             <li>Architected full-stack React.js/Express.js energy platform across AWS (EU) and Alibaba Cloud (China); Terraform IaC, ArgoCD, Helm with custom data-routing for GDPR/PIPL compliance</li>
@@ -204,10 +201,10 @@ section{padding:100px 24px;position:relative;z-index:2}
         <div class="timeline-item">
           <div class="dot"><svg viewBox="0 0 15 15"><rect x="1.5" y="2" width="5" height="4.5" rx="0.5" fill="none" stroke="#555" stroke-width="0.75"/><rect x="1.5" y="8.5" width="5" height="4.5" rx="0.5" fill="none" stroke="#555" stroke-width="0.75"/><line x1="7.5" y1="7.5" x2="10.5" y2="7.5" stroke="#333" stroke-width="1"/><polygon points="10.5,6 13,7.5 10.5,9" fill="#333" stroke="none"/><rect x="11" y="3" width="3.5" height="9" rx="0.5" fill="none" stroke="#eee" stroke-width="0.75"/></svg></div>
           <h3>Software Engineer Intern &middot; Reap Technologies</h3>
-          <div class="meta">Jun 2022 &ndash; Sep 2022 &middot; Hong Kong</div>
+          <div class="meta">Jun 2022 &</li>ndash; Sep 2022 &middot;</li></li> Hong Kong</div</li></h3>>
           <ul>
-            <li>Migrated legacy monolithic codebase into Controller-Service-Repository architecture using Test-Driven Development</li>
-            <li>Engineered integration test suites with Docker scaffolding and mocked services</li>
+            <li>Migrated legacy monolithic code</li>base into Controller-Service-Repository architecture using Test-Driven Development</li>
+            <li>Engine</li>ered integration test suites with Docker scaffolding and mocked services</li>
           </ul>
         </div>
         <div class="timeline-item">
@@ -248,10 +245,10 @@ section{padding:100px 24px;position:relative;z-index:2}
       <div class="skills-cloud">
         <span>TypeScript</span><span>Python</span><span>Java</span><span>Scala</span><span>Kotlin</span><span>Go</span><span>SQL</span>
         <span>Vue.js</span><span>React</span><span>Nest.js</span><span>Spring</span><span>Ktor</span><span>Flask</span><span>FastAPI</span>
-        <span>AWS</span><span>Alibaba Cloud</span><span>Docker</span><span>Kubernetes</span><span>ArgoCD</span>
-        <span>Kafka</span><span>PostgreSQL</span><span>MongoDB</span><span>Redis</span><span>Elasticsearch</span>
-        <span>Terraform</span><span>Helm</span><span>AWS Bedrock</span><span>RAG</span><span>Vector DBs</span>
-        <span>GitOps</span><span>CI/CD</span><span>Microservices</span><span>Event-Driven</span><span>CQRS</span>
+        <span>AWS</span><span>Alibaba Cloud</span><span>Docker</span><span>Kubernetes</span></h3></li></li></li></span></span></span></span></span></span></span></span></span></span></span></span><span></span>ArgoCD</span></span></span>
+        <span>Kafka</span></span></span><span>PostgreSQL</span><span>MongoDB</span><span>Redis</span></span><span>Elasticsearch</span>
+        <span>Terraform</span><span>Helm</span><span>AWS Bed</span></span></span>rock</span><span>RAG</span><span>Vector DBs</span></span></span></span></span></span>
+        <span>GitOps</span><span>CI/CD</span><span>Microservices</span><span>Event-Driven</span></span></span></span></span><span>CQRS</span>
       </div>
     </div>
     <div class="section-art" id="skills-art">
@@ -274,16 +271,11 @@ section{padding:100px 24px;position:relative;z-index:2}
     <div class="section-content">
       <div class="section-label">Projects</div>
       <div class="project-card">
-        <div class="project-inner">
-          <div class="project-icon"><svg viewBox="0 0 40 40"><rect x="4" y="4" width="32" height="10" rx="1.5" fill="none" stroke="#333" stroke-width="0.75"/><rect x="7" y="6.5" width="5" height="3" rx="0.5" fill="#555"/><rect x="4" y="17" width="32" height="10" rx="1.5" fill="none" stroke="#333" stroke-width="0.75"/><rect x="7" y="19.5" width="5" height="3" rx="0.5" fill="#888"/><rect x="4" y="30" width="32" height="8" rx="1.5" fill="none" stroke="#333" stroke-width="0.75"/><rect x="7" y="32" width="5" height="3" rx="0.5" fill="#eee"/><line x1="20" y1="14" x2="20" y2="17" stroke="#222" stroke-width="0.5"/><line x1="20" y1="27" x2="20" y2="30" stroke="#222" stroke-width="0.5"/></svg></div>
-          <div class="project-text">
-            <h3>Homelab</h3>
-            <div class="meta" style="font-size:12px;color:var(--label);margin-bottom:6px">2025 &ndash; Present</div>
-            <div class="desc">20+ self-hosted services with Golang deployment tooling and Tailscale networking. Golang CLI toolchain around centralized service registry. Zero-exposure network: Tailscale mesh VPN, MagicDNS, Pi-hole, Caddy reverse proxy. Multi-layer observability with VictoriaMetrics, Loki, Grafana, and Alertmanager.</div>
-            <div class="tags"><span>Go</span><span>Docker</span><span>Tailscale</span><span>Grafana</span><span>PostgreSQL</span></div>
-            <div class="links-proj"><a href="https://github.com/viscory" target="_blank" rel="noopener">GitHub</a></div>
-          </div>
-        </div>
+        <h3>Homelab</h3>
+        <div class="meta</h3>" style="font-size:12px;color:var(--label);margin-bottom:6px">2025 &ndash; Present</div>
+        <div class="desc">20+ self-hosted services with Golang deployment tooling and Tailscale networking. Golang CLI toolchain around centralized service registry. Zero-exposure network: Tailscale mesh VPN, MagicDNS, Pi-hole, Caddy reverse proxy. Multi-layer observability with VictoriaMetrics, Loki, Grafana, and Alertmanager.</div>
+        <div class="tags"><span>Go</span><span>Docker</span><span>Tailscale</span><span>Grafana</span><span></span></span>PostgreSQL</span></div>
+        <div class="links-proj"><a href="https://github.com/v</span></span></span>iscory" target="_blank" rel="noopener">GitHub</a></div>
       </div>
     </div>
     <div class="section-art" id="projects-art">
@@ -309,14 +301,7 @@ section{padding:100px 24px;position:relative;z-index:2}
       <div class="section-label">Education</div>
       <div class="edu-card">
         <div class="edu-inner">
-          <div class="edu-icon"><svg viewBox="0 0 60 60">
-            <path d="M30 5 L6 18 L6 42 Q6 55, 30 58 Q54 55, 54 42 L54 18 Z" fill="none" stroke="#333" stroke-width="1"/>
-            <path d="M30 13 L12 22 L12 40 Q12 50, 30 53 Q48 50, 48 40 L48 22 Z" fill="none" stroke="#222" stroke-width="0.5"/>
-            <line x1="12" y1="28" x2="48" y2="28" stroke="#222" stroke-width="0.5"/>
-            <line x1="12" y1="34" x2="48" y2="34" stroke="#222" stroke-width="0.5"/>
-            <text x="30" y="45" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#eee">60</text>
-            <text x="30" y="55" text-anchor="middle" font-family="system-ui,sans-serif" font-size="5" letter-spacing="0.5" fill="#555">CUHK</text>
-          </svg></div>
+          <div class="edu-icon"><img src="assets/school-logo-1x.png" alt="CUHK"></div>
           <div>
             <h3>The Chinese University of Hong Kong</h3>
             <div class="meta">B.Sc. in Computer Science &middot; Second Class Honours (2:1) &middot; Sep 2018 &ndash; Jun 2023</div>
@@ -328,12 +313,12 @@ section{padding:100px 24px;position:relative;z-index:2}
   </div>
 </section>
 
-<button id="chat-btn" onclick="toggleChat()" aria-label="FAQ">?</button>
+<button id="chat-btn" onclick="toggleChat()" aria-label="Contact">?</button>
 <div id="chat-panel">
-  <h3>FAQ</h3>
+  <h3>Quick Answers</h3>
   <div id="faq-list"></div>
 </div>
 
-<script src="main.js"></script>
+</h3><script src="main.js"></script>
 </body>
 </html>
