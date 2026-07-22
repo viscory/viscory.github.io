@@ -80,6 +80,22 @@ li {
   letter-spacing: 0.15em;
 }
 
+/* ── Nav list ── */
+.nav-bar {
+  padding: 1.5rem 24px;
+}
+.nav-list {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nav-list a {
+  text-decoration: none;
+}
+
 /* ── Links — instant block inversion ── */
 a {
   color: var(--color-fg);
@@ -92,6 +108,19 @@ a:hover {
 }
 
 /* ── Button-style links ── */
+.skill-tag {
+  display: inline-block;
+  padding: 0.3em 0.8em;
+  border: 1px solid var(--color-fg);
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  font-size: var(--text-meta);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1;
+}
+
 .btn {
   display: inline-block;
   padding: 0.5em 1.25em;
@@ -171,9 +200,8 @@ a:hover {
 
 #hud .loc {
   font-size: 11px;
-  color: var(--color-fg);
+  color: #777;
   margin-top: 1px;
-  opacity: 0.6;
 }
 
 /* ── FSM Mood Button ── */
@@ -187,12 +215,11 @@ a:hover {
   border-radius: 50%;
   background: var(--color-fg);
   color: var(--color-bg);
-  border: none;
+  border: 1px solid var(--color-fg);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
   font-family: inherit;
 }
 
@@ -202,7 +229,8 @@ a:hover {
 }
 
 #chat-btn:hover {
-  opacity: 0.85;
+  background: var(--color-bg);
+  color: var(--color-fg);
 }
 
 .chat-happy {
@@ -259,6 +287,16 @@ a:hover {
   50% {
     transform: scale(0.92);
     opacity: 0.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

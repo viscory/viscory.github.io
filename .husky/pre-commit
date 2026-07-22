@@ -1,9 +1,10 @@
 #!/bin/sh
 cd "$(dirname "$0")/.." || exit 1
+
 echo "=== Pre-commit ==="; errors=0
 
 echo "→ Building…"
-pnpm run build 2>/dev/null || { echo "  ✗ Build failed"; errors=$((errors+1)); }
+pnpm run build || { echo "  ✗ Build failed"; errors=$((errors+1)); }
 
 echo "→ CHANGELOG…"
 if git diff --cached --exit-code CHANGELOG.md >/dev/null 2>&1; then

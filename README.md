@@ -1,6 +1,6 @@
 # viscory.github.io
 
-Personal portfolio site for Faiyaz Rahman. Built with [Astro](https://astro.build), strict monochrome design, zero client JavaScript.
+Personal portfolio site for Faiyaz Rahman. Built with [Astro](https://astro.build), strict monochrome editorial design, with light client-side interactivity.
 
 ## Quick Start
 
@@ -15,8 +15,8 @@ pnpm run preview   # preview production build locally
 
 ```bash
 pnpm run lint:css  # Stylelint — rejects named colors, non-unit values
-pnpm run format    # Prettier — checks formatting (2-space tabs, Astro parser)
-pnpm run check     # build + lint:css + format — runs before commit
+pnpm run format    # Prettier — checks formatting (2-space tabs, Astro + TypeScript)
+pnpm run check     # lint:css + format + build — runs in CI
 ```
 
 ## Architecture
@@ -27,11 +27,22 @@ src/
 │   ├── config.ts              # Zod schemas (projects, experience)
 │   ├── projects/*.md          # Markdown with frontmatter
 │   └── experience/*.md        # Markdown with frontmatter
-├── styles/global.css           # Design tokens, typography, instant hover inversions
-├── layouts/Layout.astro        # HTML shell, nav, footer, <slot/>
+├── styles/global.css           # Design tokens, typography, 1px borders, instant hover
+├── layouts/Layout.astro        # HTML shell, nav, footer, <slot/>, loads interactive.ts
 ├── pages/index.astro           # Queries content collections, renders all sections
+├── scripts/interactive.ts      # Client-side: HUD clock, rain/meteor canvas, FSM mood button
 └── env.d.ts                    # TypeScript declarations
 ```
+
+### Interactive Features (Client-Side JS)
+
+The site is primarily static HTML/CSS but includes a small (~120 line) client script for:
+
+- **HUD clock** — live Hong Kong time, updates every second
+- **Rain + meteors** — Canvas 2D particle animation with escalating intensity (resets every 2 min)
+- **Mood button** — bottom-right button with FSM-based mood cycling (click to awaken, then cycles through star/bolt/moon/rocket moods)
+
+All animations respect `prefers-reduced-motion`. The page renders without JS — all content is visible without the script running.
 
 ### Content Collections
 
@@ -43,11 +54,11 @@ startYear: z.string().regex(/^\d{4}$/)
 tags: z.array(z.string()).max(8)
 ```
 
-Experience entries are validated:
+Experience dates are validated:
 
 ```ts
-company: z.string().max(60)
-role: z.string().max(60)
+startDate: z.string().regex(/^(Jan|Feb|...)\s\d{4}$/)
+endDate: z.string().regex(/^(Jan|Feb|...)\s\d{4}$/).or(z.literal('Present'))
 ```
 
 ### Design System
@@ -59,23 +70,22 @@ role: z.string().max(60)
 | `--font-heading` | `Helvetica Neue`, `Arial Black`, system-ui |
 | `--font-body` | `SFMono-Regular`, `Menlo`, `Consolas`, monospace |
 | Borders | `1px solid #000000` only |
-| Hover | Instant bg/fg inversion — no transitions |
+| Hover | Instant bg/fg inversion |
 
-No gray, no gradients, no client JS. Pure flat HTML/CSS output.
+Strict monochrome palette — no gray, no gradients. Hover states are instant block inversions with no transitions. The mood button and HUD are the only elements with visual animations (documented above).
 
 ## Deployment
 
-GitHub Actions builds and deploys `dist/` to GitHub Pages on push to `master`. The CI pipeline:
+GitHub Actions builds and deploys `dist/` to GitHub Pages on push to `master`:
 
-1. `actions/checkout`
-2. `actions/setup-node` v20
-3. `npm install`
-4. `npm run build`
-5. `peaceiris/actions-gh-pages` → publishes `dist/`
+1. `pnpm/action-setup` + `actions/setup-node` v20
+2. `pnpm install`
+3. `pnpm run lint:css` + `pnpm run format` + `pnpm run build`
+4. `peaceiris/actions-gh-pages` → publishes `dist/`
 
 ## Pre-commit
 
-The `.husky/pre-commit` hook runs `npm run build` and validates that `CHANGELOG.md` is staged and append-only.
+The `.husky/pre-commit` hook runs `pnpm run build` and validates that `CHANGELOG.md` is staged and append-only.
 
 ## License
 

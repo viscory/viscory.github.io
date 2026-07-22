@@ -1,46 +1,70 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Faiyaz Rahman</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>F</text></svg>" />
-</head>
-<body>
-  <!-- Canvas background -->
-  <canvas id="bg"></canvas>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faiyaz Rahman — Full Stack Developer</title>
+    <meta
+      name="description"
+      content="Full-stack developer based in Hong Kong. 5+ years building systems across AI, infrastructure, and product. TypeScript, Python, Go, Kafka, Kubernetes, AWS Bedrock."
+    />
+    <meta
+      name="keywords"
+      content="Faiyaz Rahman, full stack developer, Hong Kong, TypeScript, Python, Kafka, Kubernetes, Premialab"
+    />
+    <meta name="author" content="Faiyaz Rahman" />
+    <meta property="og:title" content="Faiyaz Rahman — Full Stack Developer" />
+    <meta
+      property="og:description"
+      content="Full-stack developer based in Hong Kong. Building event-driven data platforms at scale."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://viscory.github.io" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://viscory.github.io" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>F</text></svg>"
+    />
+  </head>
+  <body>
+    <canvas id="bg" aria-hidden="true"></canvas>
 
-  <!-- HUD -->
-  <div id="hud">
-    <div class="time" id="hud-time">--:-- HKT</div>
-    <div class="loc">Hong Kong</div>
-  </div>
-
-  <nav class="container" style="padding: 1.5rem 24px;">
-    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
-      <a href="#about" class="meta" style="text-decoration: none;">About</a>
-      <a href="#experience" class="meta" style="text-decoration: none;">Experience</a>
-      <a href="#skills" class="meta" style="text-decoration: none;">Skills</a>
-      <a href="#projects" class="meta" style="text-decoration: none;">Projects</a>
-      <a href="#education" class="meta" style="text-decoration: none;">Education</a>
+    <div id="hud">
+      <div class="time" id="hud-time" aria-live="polite">--:-- HKT</div>
+      <div class="loc">Hong Kong</div>
     </div>
-  </nav>
 
-  <main>
-    <slot />
-  </main>
+    <nav class="container nav-bar" aria-label="Section navigation">
+      <ul class="nav-list">
+        <li><a href="#about" class="meta">About</a></li>
+        <li><a href="#experience" class="meta">Experience</a></li>
+        <li><a href="#skills" class="meta">Skills</a></li>
+        <li><a href="#projects" class="meta">Projects</a></li>
+        <li><a href="#education" class="meta">Education</a></li>
+      </ul>
+    </nav>
 
-  <footer class="container" style="border-top: 1px solid var(--color-fg); padding: var(--space-inner) 24px 2rem; margin-top: 0;">
-    <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
-      <span class="meta">Faiyaz Rahman</span>
-      <span class="meta" style="letter-spacing: 0.05em;">Hong Kong &middot; MMXXV</span>
-    </div>
-  </footer>
+    <main>
+      <slot />
+    </main>
 
-  <script src="../scripts/interactive.ts"></script>
-</body>
+    <footer
+      class="container"
+      style="border-top: 1px solid var(--color-fg); padding: var(--space-inner) 24px 2rem; margin-top: 0;"
+    >
+      <div
+        style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;"
+      >
+        <span class="meta">&copy; Faiyaz Rahman</span>
+        <span class="meta" style="letter-spacing: 0.05em;">Hong Kong</span>
+      </div>
+    </footer>
+
+    <script src="../scripts/interactive.ts"></script>
+  </body>
 </html>

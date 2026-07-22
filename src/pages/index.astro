@@ -236,16 +236,7 @@ const projectIcons: Record<string, string> = {
       >Skills</span
     >
     <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-      {
-        skills.map((skill) => (
-          <span
-            class="btn"
-            style="padding: 0.3em 0.8em; font-size: var(--text-meta); text-transform: uppercase;"
-          >
-            {skill}
-          </span>
-        ))
-      }
+      {skills.map((skill) => <span class="skill-tag">{skill}</span>)}
     </div>
   </section>
 

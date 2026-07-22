@@ -14,16 +14,16 @@ if (c) {
   const ctx = c.getContext("2d")!;
   let W: number, H: number;
   const resize = () => {
-    W = c.width = innerWidth;
-    H = c.height = innerHeight;
+    W = c.width = document.documentElement.clientWidth;
+    H = c.height = document.documentElement.clientHeight;
   };
   resize();
   addEventListener("resize", resize);
 
   // Rain — always steady
   const drops = Array.from({ length: 150 }, () => ({
-    x: Math.random() * innerWidth,
-    y: Math.random() * innerHeight,
+    x: Math.random() * document.documentElement.clientWidth,
+    y: Math.random() * document.documentElement.clientHeight,
     l: 10 + Math.random() * 15,
     s: 1 + Math.random() * 2,
     o: 0.08 + Math.random() * 0.07,
