@@ -2,6 +2,22 @@
 
 All notable changes to this project are documented here.
 
+## [Fix Batch: Icons, Semantics, Tooling]
+
+### Fixed
+
+- reciprocus icon now uses bitcoin Remixicon SVG (was globe)
+- Project body descriptions now render Markdown properly (was raw source)
+- Section labels (About, Experience, Skills, Projects, Education) changed to `<h2>` for proper document outline
+- Fade-in CSS classes removed (dead code — never used)
+- Mood button: removed duplicate `btn.style` assignments in ROCKET mood
+- Root `.nojekyll` deleted (vestigial — only needed in `dist/`)
+- `AGENTS.md` now honestly documents client-side JavaScript (HUD clock, rain/meteors, mood button)
+- Pre-commit hook now runs `pnpm run lint:css` and `pnpm run format`, removed `2>/dev/null` stderr suppression
+- `stylelintrc.json` allows `s`, `ms`, `deg` units (needed for mood button animations)
+
+---
+
 ## [Unreleased]
 
 ### Changed

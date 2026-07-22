@@ -4,6 +4,12 @@ PNPM="mise exec pnpm@11.15.1 --"
 
 echo "=== Pre-commit ==="; errors=0
 
+echo "→ Lint CSS…"
+$PNPM pnpm run lint:css || { echo "  ✗ Stylelint failed"; errors=$((errors+1)); }
+
+echo "→ Format check…"
+$PNPM pnpm run format || { echo "  ✗ Prettier check failed (run pnpm run format:fix)"; errors=$((errors+1)); }
+
 echo "→ Building…"
 $PNPM pnpm run build || { echo "  ✗ Build failed"; errors=$((errors+1)); }
 
@@ -14,7 +20,7 @@ if git diff --cached --exit-code CHANGELOG.md >/dev/null 2>&1; then
   errors=$((errors+1))
 else echo "  ✓ staged"; fi
 
-DEL=$(git diff --cached --unified=0 CHANGELOG.md 2>/dev/null | grep '^-[^-]')
+DEL=$(git diff --cached --unified=0 CHANGELOG.md | grep '^-[^-]')
 [ -n "$DEL" ] && { echo "  ✗ CHANGELOG.md has deletions"; errors=$((errors+1)); }
 
 [ "$errors" -gt 0 ] && { echo "❌ Aborted ($errors)"; exit 1; }

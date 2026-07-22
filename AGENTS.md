@@ -1,7 +1,9 @@
 # Agent Memory — viscory.github.io
 
 ## Project
-Personal portfolio site for Faiyaz Rahman (viscory). Built with Astro (static site generator). Outputs pure flat HTML/CSS to `dist/`. Deploys to GitHub Pages via CI.
+Personal portfolio site for Faiyaz Rahman (viscory). Built with Astro (static site generator). Outputs static HTML/CSS/JS to `dist/`. Deploys to GitHub Pages via CI.
+
+**Key distinction**: The site is primarily static HTML/CSS but includes a small client-side script (~120 lines) for visual flair: HUD clock, Canvas rain/meteor particles, and an FSM mood button. All content renders without JS — the script is strictly additive.
 
 ## Architecture
 ```
@@ -11,10 +13,11 @@ src/
 │   ├── projects/*.md      — Markdown with frontmatter (title, startYear, url, tags)
 │   └── experience/*.md    — Markdown with frontmatter (company, role, startDate, endDate, location)
 ├── styles/global.css      — Design tokens, typography, reset, 1px borders, instant hover
-├── layouts/Layout.astro   — HTML shell, nav, footer, <slot />
-├── pages/index.astro      — Queries getCollection() for projects + experience
+├── layouts/Layout.astro   — HTML shell, HUD, nav, footer, canvas, <slot />
+├── pages/index.astro      — Queries getCollection() for projects + experience, renders all sections
+├── scripts/interactive.ts — Client-side: HUD clock, Canvas rain/meteors, FSM mood button
 └── env.d.ts               — Auto-generated type declarations
-public/assets/             — headshot.jpg, resume.pdf, school-logo-1x.png, unnamed.png
+public/assets/             — headshot.jpg, resume.pdf, school-logo-1x.png
 dist/                      — Build output (HTML + assets)
 .stylelintrc.json          — CSS enforcement (no named colors, no url(), strict units)
 .prettierrc.mjs            — 2-space tabs, Astro parser
@@ -32,7 +35,7 @@ astro.config.mjs           — Site config (output: static, dir: ./dist)
 ```
 
 - **No gray**. No `#888`, no `#eee`, no `#333`. Pure black/white only.
-- **No gradients, no transitions**. Hover is instant bg-fg swap.
+- **No gradients, no transitions** (except mood button animations — documented above). Hover is instant bg-fg swap.
 - **All structural divisions**: `1px solid #000000` borders.
 - **Typography**: Giant heavy Neo-Grotesk headings / Tiny crisp monospaced body.
 - **Fluid scale**: `clamp()` based on viewport width.
@@ -78,8 +81,9 @@ English Debating Team, Google Developers Student Club
 - `pnpm run build` — `astro build` → outputs to `dist/`
 - `pnpm run lint:css` — Stylelint (rejects named colors, external fonts, non-unit values)
 - `pnpm run format` — Prettier check (2-space tabs, Astro parser)
-- `.github/workflows/ci.yml` — Node 20, pnpm install → build → deploy to GitHub Pages
-- `.husky/pre-commit` — build check + CHANGELOG must be staged + append-only
+- `pnpm run check` — lint:css + format + build (runs in CI and pre-commit)
+- `.github/workflows/ci.yml` — Node 20, pnpm install → check → deploy to GitHub Pages
+- `.husky/pre-commit` — lint:css + format + build + CHANGELOG staged & append-only
 - `CHANGELOG.md` — append-only changelog
 
 ## Content Collections
@@ -94,7 +98,7 @@ Experience data is validated:
 - `role: z.string().max(60)`
 
 ## What Was Removed (Failed Iterations)
-- All client-side JavaScript (rain particles, shooting stars, CSS 3D cube, HUD clock, nav dots, scroll arrow, fade-in animations, data flow graph, chat FAQ, FSM mood button)
+- CSS 3D cube, nav dots, scroll arrow, data flow graph, chat FAQ panel
 - Stats grid ("meaningless numbers"), section-art SVGs ("weird boxes"), inline onclick handlers
 - Bun toolchain (mise, oxlint, bun build scripts)
 - Google Docs resume link (replaced by local PDF)
@@ -104,5 +108,4 @@ Experience data is validated:
 - The project went through ~10 rapid iterations. Current state is what survived user scrutiny.
 - No automated visual testing — only structural (Astro build succeeds).
 - Astro's dev server works, but there's no hot-reload-like experience (just standard Vite HMR).
-- The FSM mood button was a fun experiment but was removed in the Astro migration (zero-JS mandate).
-- `.husky/pre-commit` runs `npm run build` which is fast (~1s) but adds friction per commit.
+- `.husky/pre-commit` builds with pnpm which is fast (~1s) but adds friction per commit.

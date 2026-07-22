@@ -96,18 +96,15 @@ li {
   text-decoration: none;
 }
 
-/* ── Links — instant block inversion ── */
+/* ── Links — no underlines ── */
 a {
   color: var(--color-fg);
   text-decoration: none;
-  text-decoration-color: transparent;
 }
 
 a:hover {
   background: var(--color-fg);
   color: var(--color-bg);
-  text-decoration: none;
-  text-decoration-color: transparent;
 }
 
 /* ── Button-style links ── */
@@ -119,6 +116,7 @@ a:hover {
   color: var(--color-fg);
   font-family: var(--font-body);
   font-size: var(--text-meta);
+  white-space: nowrap;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   line-height: 1;
@@ -132,7 +130,7 @@ a:hover {
   color: var(--color-fg);
   font-family: var(--font-body);
   font-size: var(--text-meta);
-  text-decoration: none !important;
+  text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   line-height: 1;
@@ -141,7 +139,6 @@ a:hover {
 .btn:hover {
   background: var(--color-fg);
   color: var(--color-bg);
-  text-decoration: none !important;
 }
 
 /* ── Structural borders — 1px solid only ── */
@@ -149,10 +146,6 @@ a:hover {
   border: none;
   border-top: 1px solid var(--color-fg);
   margin: 0;
-}
-
-.section-block:first-of-type {
-  padding-top: 0;
 }
 
 .bordered {
@@ -174,17 +167,7 @@ a:hover {
   padding: var(--space-section) 0;
 }
 
-/* ── Interactive Elements ── */
-#bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
-
+/* ── HUD ── */
 #hud {
   position: fixed;
   top: 24px;
@@ -203,9 +186,20 @@ a:hover {
 }
 
 #hud .loc {
-  font-size: 11px;
-  color: #777;
-  margin-top: 1px;
+  font-size: 10px;
+  color: var(--color-fg);
+  margin-top: 2px;
+}
+
+/* ── Canvas background ── */
+#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* ── FSM Mood Button ── */
@@ -240,15 +234,12 @@ a:hover {
 .chat-happy {
   animation: chatHappy 0.6s ease-in-out infinite;
 }
-
 .chat-bolt {
   animation: chatBolt 0.4s ease-in-out infinite;
 }
-
 .chat-sleepy {
   animation: chatSleepy 3s ease-in-out infinite;
 }
-
 .chat-rocket {
   transition: all 0.15s ease !important;
 }
@@ -262,7 +253,6 @@ a:hover {
     transform: translateY(-6px) scale(1.05);
   }
 }
-
 @keyframes chatBolt {
   0%,
   100% {
@@ -281,7 +271,6 @@ a:hover {
     transform: translate(2px, -3px) rotate(2deg);
   }
 }
-
 @keyframes chatSleepy {
   0%,
   100% {
@@ -294,6 +283,7 @@ a:hover {
   }
 }
 
+/* ── prefers-reduced-motion ── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -301,6 +291,9 @@ a:hover {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  #chat-btn {
+    transition: none !important;
   }
 }
 
@@ -311,5 +304,19 @@ a:hover {
   }
   .container {
     padding: 0 16px;
+  }
+  .nav-bar {
+    padding: 1.5rem 16px;
+  }
+  #hud {
+    left: 16px;
+  }
+  #chat-btn {
+    width: 40px;
+    height: 40px;
+  }
+  #chat-btn svg {
+    width: 20px;
+    height: 20px;
   }
 }
