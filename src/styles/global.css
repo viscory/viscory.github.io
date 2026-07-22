@@ -29,6 +29,7 @@ html {
   font-family: var(--font-body);
   font-size: var(--text-body);
   line-height: 1.85;
+  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -211,15 +212,15 @@ a:hover {
   animation: chatHappy 0.6s ease-in-out infinite;
 }
 
-.chat-angry {
-  animation: chatAngry 0.4s ease-in-out infinite;
+.chat-bolt {
+  animation: chatBolt 0.4s ease-in-out infinite;
 }
 
 .chat-sleepy {
   animation: chatSleepy 3s ease-in-out infinite;
 }
 
-.chat-jumpy {
+.chat-rocket {
   transition: all 0.15s ease !important;
 }
 
@@ -233,7 +234,7 @@ a:hover {
   }
 }
 
-@keyframes chatAngry {
+@keyframes chatBolt {
   0%,
   100% {
     transform: translate(0, 0) rotate(0);

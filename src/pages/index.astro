@@ -1,122 +1,293 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
 
-const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 function parseDate(s: string): number {
-  if (s === 'Present') return 999999;
-  const [m, y] = s.split(' ');
+  if (s === "Present") return 999999;
+  const [m, y] = s.split(" ");
   return parseInt(y) * 12 + MONTHS.indexOf(m);
 }
 
-const experience = (await getCollection('experience')).sort(
-  (a, b) => parseDate(b.data.endDate) - parseDate(a.data.endDate)
+const experience = (await getCollection("experience")).sort(
+  (a, b) => parseDate(b.data.endDate) - parseDate(a.data.endDate),
 );
 
-const projects = (await getCollection('projects')).sort(
-  (a, b) => parseInt(b.data.startYear) - parseInt(a.data.startYear)
+const projects = (await getCollection("projects")).sort(
+  (a, b) => parseInt(b.data.startYear) - parseInt(a.data.startYear),
 );
 
-const skills = ['TypeScript','Python','Java','Scala','Kotlin','Go','SQL','Vue.js','React','Nest.js','Spring','Ktor','Flask','FastAPI','AWS','Alibaba Cloud','Docker','Kubernetes','ArgoCD','Kafka','PostgreSQL','MongoDB','Redis','Elasticsearch','Terraform','Helm','AWS Bedrock','RAG','Vector DBs','GitOps','CI/CD','Microservices','Event-Driven','CQRS'];
+const skills = [
+  "TypeScript",
+  "Python",
+  "Java",
+  "Scala",
+  "Kotlin",
+  "Go",
+  "SQL",
+  "Vue.js",
+  "React",
+  "Nest.js",
+  "Spring",
+  "Ktor",
+  "Flask",
+  "FastAPI",
+  "AWS",
+  "Alibaba Cloud",
+  "Docker",
+  "Kubernetes",
+  "ArgoCD",
+  "Kafka",
+  "PostgreSQL",
+  "MongoDB",
+  "Redis",
+  "Elasticsearch",
+  "Terraform",
+  "Helm",
+  "AWS Bedrock",
+  "RAG",
+  "Vector DBs",
+  "GitOps",
+  "CI/CD",
+  "Microservices",
+  "Event-Driven",
+  "CQRS",
+];
+
+const projectIcons: Record<string, string> = {
+  Homelab:
+    '<svg viewBox="0 0 24 24" fill="currentColor" style="width:28px;height:28px;flex-shrink:0;opacity:.6"><path d="M19 21H5a1 1 0 0 1-1-1v-9H1l10.3-9.2a1 1 0 0 1 1.4 0L23 11h-3v9a1 1 0 0 1-1 1zM7 9.6V19h10v-9.4l-5-4.5-5 4.5z"/><path d="M9 13h6v6H9z" fill="currentColor" opacity=".4"/></svg>',
+  "paperless-py":
+    '<svg viewBox="0 0 24 24" fill="currentColor" style="width:28px;height:28px;flex-shrink:0;opacity:.6"><path d="M4 4a2 2 0 0 1 2-2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4z"/><path d="M8 11h8v2H8zm0 4h5v2H8z" fill="currentColor" opacity=".6"/></svg>',
+  reciprocus:
+    '<svg viewBox="0 0 24 24" fill="currentColor" style="width:28px;height:28px;flex-shrink:0;opacity:.6"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2a7.2 7.2 0 0 1-6-3.22c.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08a7.2 7.2 0 0 1-6 3.22z"/></svg>',
+  chirper:
+    '<svg viewBox="0 0 24 24" fill="currentColor" style="width:28px;height:28px;flex-shrink:0;opacity:.6"><path d="M22 4.01c-.9.4-1.8.67-2.7.8a4.7 4.7 0 0 0 2.07-2.6 9.3 9.3 0 0 1-2.98 1.14 4.68 4.68 0 0 0-7.97 4.27A13.3 13.3 0 0 1 3.2 2.9a4.68 4.68 0 0 0 1.45 6.24c-.74 0-1.48-.2-2.1-.54v.06a4.68 4.68 0 0 0 3.75 4.59c-.7.19-1.43.21-2.14.08a4.69 4.69 0 0 0 4.37 3.25A9.42 9.42 0 0 1 2 19.54a13.3 13.3 0 0 0 7.2 2.1c8.64 0 13.36-7.16 13.36-13.36 0-.2 0-.4-.02-.6A9.6 9.6 0 0 0 22 4.01z"/></svg>',
+  default:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:28px;height:28px;flex-shrink:0;opacity:.6"><circle cx="12" cy="12" r="9" stroke-width="2"/></svg>',
+};
 ---
 
 <Layout>
-
   <!-- HERO -->
-  <section id="hero" class="container" style="padding: var(--space-section) 24px 0;">
+  <section
+    id="hero"
+    class="container"
+    style="padding: var(--space-section) 24px 0;"
+  >
     <div style="max-width: 480px;">
-      <img src="/assets/headshot.jpg" alt="" width="80" height="80" style="border-radius: 50%; filter: grayscale(1); margin-bottom: 2rem;" />
+      <img
+        src="/assets/headshot.jpg"
+        alt=""
+        width="80"
+        height="80"
+        style="border-radius: 50%; filter: grayscale(1); margin-bottom: 2rem;"
+      />
       <h1>Faiyaz<br />Rahman</h1>
       <p style="margin: 1.5rem 0 2rem; max-width: 420px;">
-        Full-stack developer building systems across AI, infrastructure, and product.
+        Full-stack developer building systems across AI, infrastructure, and
+        product.
       </p>
       <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
         <a href="mailto:faiman.rahyaz@gmail.com" class="btn">Email</a>
-        <a href="https://github.com/viscory" class="btn" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://linkedin.com/in/faiyazr" class="btn" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="/assets/resume.pdf" class="btn" target="_blank" rel="noopener">Resume</a>
+        <a
+          href="https://github.com/viscory"
+          class="btn"
+          target="_blank"
+          rel="noopener">GitHub</a
+        >
+        <a
+          href="https://linkedin.com/in/faiyazr"
+          class="btn"
+          target="_blank"
+          rel="noopener">LinkedIn</a
+        >
+        <a href="/assets/resume.pdf" class="btn" target="_blank" rel="noopener"
+          >Resume</a
+        >
       </div>
     </div>
   </section>
 
   <hr class="container section-divider" />
 
-    <!-- ABOUT -->
-    <section id="about" class="container section-block" style="padding-top: var(--space-section);">
-    <span class="meta" style="display: block; margin-bottom: 1.5rem;">About</span>
+  <!-- ABOUT -->
+  <section
+    id="about"
+    class="container section-block"
+    style="padding-top: var(--space-section);"
+  >
+    <span class="meta" style="display: block; margin-bottom: 1.5rem;"
+      >About</span
+    >
     <p>
-      Full-stack developer with 5+ years delivering systems across AI, infrastructure, and product. Architected multi-cloud fintech platforms, scaled Kafka to 1.5M+ messages/day, built Bedrock/RAG pipelines for quantitative reporting. Comfortable in TypeScript APIs, Vue/React UIs, and the GitOps glue between them.
+      Full-stack developer with 5+ years delivering systems across AI,
+      infrastructure, and product. Architected multi-cloud fintech platforms,
+      scaled Kafka to 1.5M+ messages/day, built Bedrock/RAG pipelines for
+      quantitative reporting. Comfortable in TypeScript APIs, Vue/React UIs, and
+      the GitOps glue between them.
     </p>
   </section>
 
   <hr class="container section-divider" />
 
-    <!-- EXPERIENCE -->
-    <section id="experience" class="container section-block" style="padding-top: var(--space-section);">
-    <span class="meta" style="display: block; margin-bottom: 1.5rem;">Experience</span>
+  <!-- EXPERIENCE -->
+  <section
+    id="experience"
+    class="container section-block"
+    style="padding-top: var(--space-section);"
+  >
+    <span class="meta" style="display: block; margin-bottom: 1.5rem;"
+      >Experience</span
+    >
     <div class="bordered" style="border-top: none;">
-      {experience.map((entry) => (
-        <div class="bordered-bottom" style="padding: 1.25rem 1rem;">
-          <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.25rem;">
-            <h3>{entry.data.company}</h3>
-            <span class="meta">{entry.data.startDate} &ndash; {entry.data.endDate}</span>
+      {
+        experience.map((entry) => (
+          <div class="bordered-bottom" style="padding: 1.25rem 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.25rem;">
+              <h3>{entry.data.company}</h3>
+              <span class="meta">
+                {entry.data.startDate} &ndash; {entry.data.endDate}
+              </span>
+            </div>
+            <span class="meta" style="display: block; margin-bottom: 0.75rem;">
+              {entry.data.role} &middot; {entry.data.location}
+            </span>
+            <ul style="list-style: none; padding: 0;">
+              {entry.body
+                .split("\n")
+                .filter((l) => l.trim().startsWith("-"))
+                .map((line) => (
+                  <li style="padding: 0.2rem 0; text-indent: -1.1rem; padding-left: 1.1rem;">
+                    &mdash;&nbsp;{line.trim().replace(/^-\s*/, "")}
+                  </li>
+                ))}
+            </ul>
           </div>
-          <span class="meta" style="display: block; margin-bottom: 0.75rem;">{entry.data.role} &middot; {entry.data.location}</span>
-          <ul style="list-style: none; padding: 0;">
-            {entry.body.split('\n').filter(l => l.trim().startsWith('-')).map((line) => (
-              <li style="padding: 0.2rem 0; text-indent: -1.1rem; padding-left: 1.1rem;">&mdash;&nbsp;{line.trim().replace(/^-\s*/, '')}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </section>
 
   <hr class="container section-divider" />
 
-    <!-- SKILLS -->
-    <section id="skills" class="container section-block" style="padding-top: var(--space-section);">
-    <span class="meta" style="display: block; margin-bottom: 1.5rem;">Skills</span>
+  <!-- SKILLS -->
+  <section
+    id="skills"
+    class="container section-block"
+    style="padding-top: var(--space-section);"
+  >
+    <span class="meta" style="display: block; margin-bottom: 1.5rem;"
+      >Skills</span
+    >
     <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-      {skills.map((skill) => (
-        <span class="btn" style="padding: 0.3em 0.8em; font-size: var(--text-meta); text-transform: uppercase;">{skill}</span>
-      ))}
-    </div>
-  </section>
-
-  <hr class="container section-divider" />
-
-    <!-- PROJECTS -->
-    <section id="projects" class="container section-block" style="padding-top: var(--space-section);">
-    <span class="meta" style="display: block; margin-bottom: 1.5rem;">Projects</span>
-    <div class="bordered" style="border-top: none;">
-      {projects.map((project, i) => (
-        <div class={i < projects.length - 1 ? 'bordered-bottom' : ''} style="padding: 1.25rem 1rem;">
-          <h3>{project.data.title}</h3>
-          <span class="meta" style="display: block; margin: 0.25rem 0 0.75rem;">
-            {project.data.startYear}{project.data.endYear ? ` \u2013 ${project.data.endYear}` : ''}
+      {
+        skills.map((skill) => (
+          <span
+            class="btn"
+            style="padding: 0.3em 0.8em; font-size: var(--text-meta); text-transform: uppercase;"
+          >
+            {skill}
           </span>
-          <p style="margin-bottom: 0.75rem;">{project.body}</p>
-          <a href={project.data.url} target="_blank" rel="noopener">GitHub</a>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </section>
 
   <hr class="container section-divider" />
 
-    <!-- EDUCATION -->
-    <section id="education" class="container section-block" style="padding-top: var(--space-section);">
-    <span class="meta" style="display: block; margin-bottom: 1.5rem;">Education</span>
-    <div class="bordered" style="padding: 1.5rem 1.25rem; display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;">
-      <img src="/assets/school-logo-1x.png" alt="CUHK" width="80" style="filter: grayscale(1); border: 1px solid var(--color-fg); flex-shrink: 0;" />
+  <!-- PROJECTS -->
+  <section
+    id="projects"
+    class="container section-block"
+    style="padding-top: var(--space-section);"
+  >
+    <span class="meta" style="display: block; margin-bottom: 1.5rem;"
+      >Projects</span
+    >
+    <div class="bordered" style="border-top: none;">
+      {
+        projects.map((project, i) => {
+          const icon = projectIcons[project.data.title] || projectIcons.default;
+          return (
+            <div
+              class={i < projects.length - 1 ? "bordered-bottom" : ""}
+              style="padding: 1.25rem 1rem;"
+            >
+              <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                <span set:html={icon} />
+                <div>
+                  <h3>{project.data.title}</h3>
+                  <span
+                    class="meta"
+                    style="display: block; margin: 0.25rem 0 0.75rem;"
+                  >
+                    {project.data.startYear}
+                    {project.data.endYear ? ` – ${project.data.endYear}` : ""}
+                  </span>
+                  <p style="margin-bottom: 0.75rem;">{project.body}</p>
+                  <a href={project.data.url} target="_blank" rel="noopener">
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <hr class="container section-divider" />
+
+  <!-- EDUCATION -->
+  <section
+    id="education"
+    class="container section-block"
+    style="padding-top: var(--space-section);"
+  >
+    <span class="meta" style="display: block; margin-bottom: 1.5rem;"
+      >Education</span
+    >
+    <div
+      class="bordered"
+      style="padding: 1.5rem 1.25rem; display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;"
+    >
+      <img
+        src="/assets/school-logo-1x.png"
+        alt="CUHK"
+        width="80"
+        style="filter: grayscale(1); flex-shrink: 0;"
+      />
       <div>
         <h3>The Chinese University of Hong Kong</h3>
-        <p>B.Sc. in Computer Science &middot; Second Class Honours (2:1) &middot; Sep 2018 &ndash; Jun 2023</p>
+        <p>
+          B.Sc. in Computer Science &middot; Second Class Honours (2:1) &middot;
+          Sep 2018 &ndash; Jun 2023
+        </p>
         <div style="margin-top: 0.5rem;">
-          <span class="meta" style="display: block;">Concentration: Database and Information Systems</span>
-          <span class="meta" style="display: block;">Full Ride Admission Scholarship &middot; The 'Sunny' Award</span>
-          <span class="meta" style="display: block;">English Debating Team &middot; Google Developers Student Club</span>
+          <span class="meta" style="display: block;"
+            >Concentration: Database and Information Systems</span
+          >
+          <span class="meta" style="display: block;"
+            >Full Ride Admission Scholarship &middot; The 'Sunny' Award</span
+          >
+          <span class="meta" style="display: block;"
+            >English Debating Team &middot; Google Developers Student Club</span
+          >
         </div>
       </div>
     </div>
@@ -125,6 +296,9 @@ const skills = ['TypeScript','Python','Java','Scala','Kotlin','Go','SQL','Vue.js
   <div style="height: 4rem;"></div>
 
   <!-- FSM Mood Button -->
-  <button id="chat-btn" aria-label="Mood"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg></button>
-
+  <button id="chat-btn" aria-label="Mood"
+    ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      ><circle cx="12" cy="12" r="9"></circle></svg
+    ></button
+  >
 </Layout>
