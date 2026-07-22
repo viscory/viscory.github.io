@@ -10,6 +10,10 @@ All notable changes to this project are documented here.
 - `.github/workflows/ci.yml`: `pnpm/action-setup` version 11 → 10
 - Removed `.npmrc` (pnpm 10 doesn't require explicit build approvals)
 
+### Fixed
+
+- `src/pages/index.astro`: Education degree classification corrected to "Second Class Honours Upper Division"
+
 ---
 
 ## [CI Fix: Standard Workflow + .npmrc]
