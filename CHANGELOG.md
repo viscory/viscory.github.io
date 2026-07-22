@@ -12,6 +12,8 @@ All notable changes to this project are documented here.
 - `src/layouts/Layout.astro`: Switched Remixicon CDN from jsDelivr to cdnjs v4.6.0 (v4.9.1 404'd on cdnjs)
 - `src/pages/index.astro`: Fixed reciprocus icon class `ri-bitcoin-line` → `ri-bit-coin-line` (correct Remixicon name)
 - `.husky/pre-commit`: Removed hardcoded pnpm version, uses `mise exec --` from `mise.toml`; now lists changed files when CHANGELOG not staged; validates every staged file is mentioned in CHANGELOG entry
+- `.github/workflows/ci.yml`: Bump Node 20→22 (pnpm 11 requires Node 22.13+)
+- `.nojekyll`: Restored at repo root (prevents GitHub Pages Jekyll build on source branch)
 - Mood button SVGs replaced with Remixicon `<i>` elements
 - CSS updated: `#chat-btn i` instead of `#chat-btn svg` for styling
 
