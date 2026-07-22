@@ -14,14 +14,66 @@ echo "→ Building…"
 mise exec -- pnpm run build || { echo "  ✗ Build failed"; errors=$((errors+1)); }
 
 echo "→ CHANGELOG…"
-if git diff --cached --exit-code CHANGELOG.md >/dev/null 2>&1; then
-  if git diff --exit-code CHANGELOG.md >/dev/null 2>&1; then echo "  ✗ CHANGELOG.md not staged"
-  else echo "  ✗ CHANGELOG.md has unstaged changes"; fi
-  errors=$((errors+1))
-else echo "  ✓ staged"; fi
 
+STAGED=$(git diff --cached --name-only --diff-filter=ACMR | grep -v "^CHANGELOG\.md$" | tr '\n' ' ')
+STAGED_COUNT=$(echo "$STAGED" | wc -w)
+
+# ── Check CHANGELOG.md is staged ──
+if git diff --cached --exit-code CHANGELOG.md >/dev/null 2>&1; then
+  if git diff --exit-code CHANGELOG.md >/dev/null 2>&1; then
+    echo "  ✗ CHANGELOG.md not staged"
+    echo ""
+    echo "     Every commit must include an entry in CHANGELOG.md."
+    echo "     You may ONLY append new entries — never edit or delete existing ones."
+    echo ""
+    echo "     Files changed in this commit:"
+    for f in $STAGED; do echo "       - $f"; done
+    echo ""
+    echo "     Add an entry at the top of CHANGELOG.md describing what changed"
+    echo "     and list each file path, then stage it and retry."
+    errors=$((errors+1))
+  else
+    echo "  ✗ CHANGELOG.md has unstaged changes"
+    echo "     Stage it with: git add CHANGELOG.md"
+    errors=$((errors+1))
+  fi
+else
+  echo "  ✓ staged"
+fi
+
+# ── Check append-only (no deletions) ──
 DEL=$(git diff --cached --unified=0 CHANGELOG.md | grep '^-[^-]')
-[ -n "$DEL" ] && { echo "  ✗ CHANGELOG.md has deletions"; errors=$((errors+1)); }
+if [ -n "$DEL" ]; then
+  echo "  ✗ CHANGELOG.md has deletions (must be append-only)"
+  echo ""
+  echo "     Deleted lines:"
+  echo "$DEL" | head -10 | sed 's/^/       /'
+  echo ""
+  echo "     If a prior entry is wrong, add a correction entry below it."
+  echo "     Do NOT edit or delete existing entries."
+  errors=$((errors+1))
+fi
+
+# ── Check every staged file is mentioned in the CHANGELOG diff ──
+if [ "$errors" -eq 0 ] && [ "$STAGED_COUNT" -gt 0 ]; then
+  ADDED=$(git diff --cached -- CHANGELOG.md | grep '^+[^+]' | tr '[:upper:]' '[:lower:]')
+  MISSING=""
+  for f in $STAGED; do
+    BASE=$(basename "$f" | tr '[:upper:]' '[:lower:]')
+    if ! echo "$ADDED" | grep -q "$BASE"; then
+      MISSING="$MISSING $f"
+    fi
+  done
+  if [ -n "$MISSING" ]; then
+    echo "  ✗ CHANGELOG.md does not mention all changed files"
+    echo ""
+    echo "     Files not mentioned:"
+    for f in $MISSING; do echo "       - $f"; done
+    echo ""
+    echo "     Add references to these file paths in your CHANGELOG.md entry."
+    errors=$((errors+1))
+  fi
+fi
 
 [ "$errors" -gt 0 ] && { echo "❌ Aborted ($errors)"; exit 1; }
 echo "✅ OK"
