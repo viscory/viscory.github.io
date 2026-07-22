@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented here.
 
+## [Downgrade pnpm 11 → 10]
+
+### Changed
+
+- `mise.toml`: `pnpm = "10"` (pnpm 11 errors on unapproved build scripts; pnpm 10 only warns)
+- `.github/workflows/ci.yml`: `pnpm/action-setup` version 11 → 10
+- Removed `.npmrc` (pnpm 10 doesn't require explicit build approvals)
+
+---
+
 ## [CI Fix: Standard Workflow + .npmrc]
 
 ### Changed
