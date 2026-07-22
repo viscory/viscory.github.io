@@ -1,23 +1,16 @@
 #!/bin/sh
 cd "$(dirname "$0")/.." || exit 1
-
-echo "=== Pre-commit ==="
-errors=0
+echo "=== Pre-commit ==="; errors=0
 
 echo "→ Building…"
-npm run build 2>/dev/null || { echo "  ✗ Build failed"; errors=$((errors+1)); }
+pnpm run build 2>/dev/null || { echo "  ✗ Build failed"; errors=$((errors+1)); }
 
 echo "→ CHANGELOG…"
 if git diff --cached --exit-code CHANGELOG.md >/dev/null 2>&1; then
-  if git diff --exit-code CHANGELOG.md >/dev/null 2>&1; then
-    echo "  ✗ CHANGELOG.md not staged"
-  else
-    echo "  ✗ CHANGELOG.md has unstaged changes"
-  fi
+  if git diff --exit-code CHANGELOG.md >/dev/null 2>&1; then echo "  ✗ CHANGELOG.md not staged"
+  else echo "  ✗ CHANGELOG.md has unstaged changes"; fi
   errors=$((errors+1))
-else
-  echo "  ✓ staged"
-fi
+else echo "  ✓ staged"; fi
 
 DEL=$(git diff --cached --unified=0 CHANGELOG.md 2>/dev/null | grep '^-[^-]')
 [ -n "$DEL" ] && { echo "  ✗ CHANGELOG.md has deletions"; errors=$((errors+1)); }

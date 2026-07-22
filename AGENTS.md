@@ -6,15 +6,22 @@ Personal portfolio site for Faiyaz Rahman (viscory). Built with Astro (static si
 ## Architecture
 ```
 src/
-├── styles/global.css    — Design tokens, typography, reset, utilities
-├── layouts/Layout.astro — HTML shell, nav, footer, <slot />
-└── pages/index.astro    — All content sections
-public/assets/           — headshot.jpg, resume.pdf, school-logo-1x.png, unnamed.png
-dist/                    — Build output (HTML + assets + .nojekyll)
-astro.config.mjs         — Site config (output: static, dir: ./dist)
+├── content/
+│   ├── config.ts          — Zod schemas for projects + experience
+│   ├── projects/*.md      — Markdown with frontmatter (title, startYear, url, tags)
+│   └── experience/*.md    — Markdown with frontmatter (company, role, startDate, endDate, location)
+├── styles/global.css      — Design tokens, typography, reset, 1px borders, instant hover
+├── layouts/Layout.astro   — HTML shell, nav, footer, <slot />
+├── pages/index.astro      — Queries getCollection() for projects + experience
+└── env.d.ts               — Auto-generated type declarations
+public/assets/             — headshot.jpg, resume.pdf, school-logo-1x.png, unnamed.png
+dist/                      — Build output (HTML + assets)
+.stylelintrc.json          — CSS enforcement (no named colors, no url(), strict units)
+.prettierrc.mjs            — 2-space tabs, Astro parser
+astro.config.mjs           — Site config (output: static, dir: ./dist)
 ```
 
-**Build pipeline**: `npm install → npm run build → astro build` → outputs `dist/` → deployed to GitHub Pages via Actions.
+**Build pipeline**: `pnpm install → pnpm run build → astro build` → outputs `dist/` → deployed to GitHub Pages via Actions.
 
 ## Design System (Strict Monochrome)
 ```
@@ -67,11 +74,24 @@ Full Ride Scholarship, The 'Sunny' Award
 English Debating Team, Google Developers Student Club
 
 ## CI / Tooling
-- `npm run dev` — `astro dev` local dev server
-- `npm run build` — `astro build` → outputs to `dist/`
-- `.github/workflows/ci.yml` — Node 20, npm install → build → deploy to GitHub Pages
+- `pnpm run dev` — `astro dev` local dev server
+- `pnpm run build` — `astro build` → outputs to `dist/`
+- `pnpm run lint:css` — Stylelint (rejects named colors, external fonts, non-unit values)
+- `pnpm run format` — Prettier check (2-space tabs, Astro parser)
+- `.github/workflows/ci.yml` — Node 20, pnpm install → build → deploy to GitHub Pages
 - `.husky/pre-commit` — build check + CHANGELOG must be staged + append-only
 - `CHANGELOG.md` — append-only changelog
+
+## Content Collections
+Project data is validated by Zod at build time:
+- `title: z.string().max(60)` — titles longer than 60 chars will fail the build
+- `startYear: z.string().regex(/^\d{4}$/)` — must be a 4-digit year string
+- `tags: z.array(z.string()).max(8)` — max 8 tags per project
+- `url: z.string().url()` — must be a valid URL
+
+Experience data is validated:
+- `company: z.string().max(60)`
+- `role: z.string().max(60)`
 
 ## What Was Removed (Failed Iterations)
 - All client-side JavaScript (rain particles, shooting stars, CSS 3D cube, HUD clock, nav dots, scroll arrow, fade-in animations, data flow graph, chat FAQ, FSM mood button)
