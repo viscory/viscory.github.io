@@ -17,6 +17,11 @@ jobs:
       - run: pnpm run lint:css
       - run: pnpm run format
       - run: pnpm run build
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --config .lychee.toml ./dist --include-fragments --base https://viscory.github.io
+          fail: false
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v3

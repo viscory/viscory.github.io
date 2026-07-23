@@ -84,6 +84,26 @@ li {
 .nav-bar {
   padding: 1.5rem 24px;
 }
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.nav-brand {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: var(--text-subhead);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  line-height: 1;
+  color: var(--color-fg);
+}
+.nav-brand:hover {
+  background: var(--color-fg);
+  color: var(--color-bg);
+}
 .nav-list {
   display: flex;
   gap: 1.5rem;
@@ -283,6 +303,37 @@ a:hover {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Print ── */
+@media print {
+  #bg,
+  #hud,
+  #scroll-progress,
+  nav,
+  footer,
+  .btn-wrap {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  html {
+    background: #ffffff !important;
+  }
+  .container {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+  .bordered,
+  .bordered-bottom {
+    border-color: #ccc !important;
+  }
+  .skill-tag,
+  .btn {
+    border-color: #ccc !important;
   }
 }
 

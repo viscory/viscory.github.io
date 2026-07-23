@@ -12,6 +12,7 @@
     "check": "pnpm run lint:css && pnpm run format && pnpm run validate:content && pnpm run build"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "astro": "^5.0.0"
   },
   "devDependencies": {

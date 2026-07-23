@@ -249,130 +249,20 @@ if (c) {
   draw();
 }
 
-// ── FSM Mood Button ──
-const btn = document.getElementById("chat-btn");
-if (btn) {
-  const svgEl = btn.querySelector("svg") || btn.querySelector("i");
-  const moods = ["IDLE", "STAR", "BOLT", "MOON", "ROCKET"] as const;
-  type Mood = (typeof moods)[number];
-
-  const SVGS: Record<Mood, string> = {
-    IDLE: '<i class="ri-question-line"></i>',
-    STAR: '<i class="ri-star-line"></i>',
-    BOLT: '<i class="ri-flashlight-line"></i>',
-    MOON: '<i class="ri-moon-line"></i>',
-    ROCKET: '<i class="ri-rocket-2-line"></i>',
-  };
-
-  const CLASSES: Record<Mood, string> = {
-    IDLE: "",
-    STAR: "chat-happy",
-    BOLT: "chat-bolt",
-    MOON: "chat-sleepy",
-    ROCKET: "chat-rocket",
-  };
-  const TRANSITIONS: Record<Mood, Array<{ to: Mood; prob: number }>> = {
-    IDLE: [
-      { to: "STAR", prob: 0.25 },
-      { to: "BOLT", prob: 0.1 },
-      { to: "MOON", prob: 0.2 },
-      { to: "ROCKET", prob: 0.15 },
-      { to: "IDLE", prob: 0.3 },
-    ],
-    STAR: [
-      { to: "IDLE", prob: 0.35 },
-      { to: "ROCKET", prob: 0.3 },
-      { to: "MOON", prob: 0.2 },
-      { to: "BOLT", prob: 0.15 },
-    ],
-    BOLT: [
-      { to: "IDLE", prob: 0.3 },
-      { to: "ROCKET", prob: 0.25 },
-      { to: "STAR", prob: 0.25 },
-      { to: "MOON", prob: 0.2 },
-    ],
-    MOON: [
-      { to: "IDLE", prob: 0.5 },
-      { to: "STAR", prob: 0.25 },
-      { to: "ROCKET", prob: 0.15 },
-      { to: "BOLT", prob: 0.1 },
-    ],
-    ROCKET: [
-      { to: "STAR", prob: 0.3 },
-      { to: "IDLE", prob: 0.25 },
-      { to: "BOLT", prob: 0.25 },
-      { to: "MOON", prob: 0.2 },
-    ],
-  };
-
-  let mood: Mood = "IDLE";
-  let mx: number | null = null;
-  let my: number | null = null;
-  let clickCount = 0;
-  let awakened = false;
-
-  document.addEventListener("mousemove", (e) => {
-    mx = e.clientX;
-    my = e.clientY;
-  });
-
-  function pickNext(from: Mood): Mood {
-    const t = TRANSITIONS[from];
-    let r = Math.random();
-    for (const { to, prob } of t) {
-      r -= prob;
-      if (r <= 0) return to;
+// ── AQI ──
+(async () => {
+  try {
+    const r = await fetch(
+      "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=aqhi&lang=en",
+    );
+    const d = await r.json();
+    const val = d.aqhi?.data?.[0]?.value;
+    const hudLoc = document.querySelector("#hud .loc");
+    if (val !== undefined && hudLoc) {
+      const span = document.createElement("span");
+      span.textContent = `AQI ${val} · `;
+      span.style.marginRight = "4px";
+      hudLoc.prepend(span);
     }
-    return t[t.length - 1].to;
-  }
-
-  function setMood(m: Mood) {
-    mood = m;
-    btn.className = "";
-    if (svgEl) svgEl.innerHTML = SVGS[m];
-    if (CLASSES[m]) btn.classList.add(CLASSES[m]);
-
-    const reduced = prefersReducedMotion();
-    const resetPos = () => {
-      btn.style.left = "";
-      btn.style.right = "";
-      btn.style.bottom = "";
-      btn.style.top = "";
-      btn.style.transition = "";
-    };
-
-    if (m === "BOLT" && mx !== null && my !== null && !reduced) {
-      btn.style.transition = "left .35s ease,top .35s ease";
-      btn.style.left = `${Math.max(0, Math.min(innerWidth - 44, mx - 22))}px`;
-      btn.style.top = `${Math.max(0, Math.min(innerHeight - 44, my - 22))}px`;
-      btn.style.bottom = "auto";
-      btn.style.right = "auto";
-    } else if (m === "ROCKET" && !reduced) {
-      btn.style.transition =
-        "left 1.5s cubic-bezier(.68,-.55,.27,1.55),top 1.5s cubic-bezier(.68,-.55,.27,1.55)";
-      btn.style.left = `${Math.random() * (innerWidth - 44)}px`;
-      btn.style.top = `${Math.random() * (innerHeight - 44)}px`;
-    } else {
-      resetPos();
-    }
-  }
-
-  btn.addEventListener("click", () => {
-    if (!awakened) {
-      awakened = true;
-      clickCount = 1;
-      if (svgEl) svgEl.innerHTML = SVGS.STAR;
-      btn.classList.add("chat-happy");
-      return;
-    }
-    clickCount++;
-    setMood(clickCount % 4 === 0 ? "ROCKET" : pickNext(mood));
-  });
-
-  setInterval(
-    () => {
-      if (awakened && Math.random() < 0.35) setMood(pickNext(mood));
-    },
-    4000 + Math.random() * 4000,
-  );
-}
+  } catch {}
+})();

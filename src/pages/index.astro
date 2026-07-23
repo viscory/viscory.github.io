@@ -42,40 +42,31 @@ const renderedExperience = await Promise.all(
 );
 
 const skills = [
-  "TypeScript",
+  "AWS Bedrock",
+  "RAG",
+  "Vector DBs",
   "Python",
+  "TypeScript",
+  "Go",
   "Java",
   "Scala",
   "Kotlin",
-  "Go",
-  "SQL",
-  "Vue.js",
   "React",
-  "Nest.js",
-  "Spring",
-  "Ktor",
-  "Flask",
+  "Vue.js",
   "FastAPI",
-  "AWS",
-  "Alibaba Cloud",
-  "Docker",
-  "Kubernetes",
-  "ArgoCD",
+  "Nest.js",
   "Kafka",
   "PostgreSQL",
   "MongoDB",
   "Redis",
   "Elasticsearch",
+  "Docker",
+  "Kubernetes",
+  "AWS",
+  "Alibaba Cloud",
   "Terraform",
   "Helm",
-  "AWS Bedrock",
-  "RAG",
-  "Vector DBs",
-  "GitOps",
-  "CI/CD",
-  "Microservices",
-  "Event-Driven",
-  "CQRS",
+  "ArgoCD",
 ];
 
 const projectIcons: Record<string, string> = {
@@ -88,86 +79,66 @@ const projectIcons: Record<string, string> = {
 ---
 
 <Layout>
-  <!-- HERO -->
-  <section
-    id="hero"
-    class="container"
-    style="padding: var(--space-section) 24px 0;"
-  >
-    <div style="max-width: 480px;">
-      <img
-        src="/assets/headshot.jpg"
-        alt="Faiyaz Rahman"
-        width="80"
-        height="80"
-        loading="lazy"
-        decoding="async"
-        style="border-radius: 50%; filter: grayscale(1); margin-bottom: 2rem;"
-      />
-      <h1>Faiyaz<br />Rahman</h1>
-      <p style="margin: 1.5rem 0 2rem; max-width: 420px;">
-        Full-stack developer building systems across AI, infrastructure, and
-        product.
-      </p>
-      <div
-        style="display: flex; gap: 0.75rem; flex-wrap: wrap; padding-bottom: 0.5rem;"
-      >
-        <span class="btn-wrap">
-          <a
-            href="mailto:faiman.rahyaz@gmail.com"
-            class="btn"
-            id="email-btn"
-            style="display: inline-flex; align-items: center; gap: 6px;"
-            ><i class="ri-mail-line" style="font-size:14px"></i>Email</a
-          >
-          <span class="btn-copy-tip" id="email-tip">Copy</span>
-        </span>
-        >
-        <a
-          href="https://github.com/viscory"
-          class="btn"
-          style="display: inline-flex; align-items: center; gap: 6px;"
-          target="_blank"
-          rel="noopener"
-          ><i class="ri-github-line" style="font-size:14px"></i>GitHub</a
-        >
-        <a
-          href="https://linkedin.com/in/faiyazr"
-          class="btn"
-          style="display: inline-flex; align-items: center; gap: 6px;"
-          target="_blank"
-          rel="noopener"
-          ><i class="ri-linkedin-line" style="font-size:14px"></i>LinkedIn</a
-        >
-        <a
-          href="/assets/resume.pdf"
-          class="btn"
-          style="display: inline-flex; align-items: center; gap: 6px;"
-          target="_blank"
-          rel="noopener"
-          ><i class="ri-file-text-line" style="font-size:14px"></i>Resume</a
-        >
-      </div>
-    </div>
-  </section>
+  <!-- HEADSHOT -->
+  <div class="container" style="padding: var(--space-section) 24px 0;">
+    <img
+      src="/assets/headshot.jpg"
+      alt="Faiyaz Rahman"
+      width="64"
+      height="64"
+      style="border-radius: 50%; filter: grayscale(1);"
+    />
+  </div>
 
-  <hr class="container section-divider" />
-
-  <!-- ABOUT -->
-  <section
-    id="about"
-    class="container section-block"
-    style="padding-top: var(--space-section);"
-  >
-    <h2 class="meta" style="margin-bottom: 1.5rem;">About</h2>
-    <p>
-      Full-stack developer with 4+ years delivering systems across AI,
-      infrastructure, and product. Architected multi-cloud fintech platforms,
-      scaled Kafka to 1.5M+ messages/day, built RAG pipelines for quantitative
-      reporting. Comfortable in TypeScript APIs, Vue/React UIs, and the GitOps
-      glue between them.
+  <!-- ABOUT + CONTACT -->
+  <section id="about" class="container" style="padding-bottom: 1rem;">
+    <p style="max-width: 520px;">
+      I build AI-powered systems for finance — semantic search over 100k
+      instruments in 300ms, RAG pipelines that stream LLM commentary onto
+      financial reports, and quantitative data platforms processing millions of
+      messages daily. Currently at Premialab shipping AI-driven analytics to
+      tier-one banks.
     </p>
   </section>
+
+  <div class="container" style="padding-bottom: var(--space-section);">
+    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+      <span class="btn-wrap">
+        <a
+          href="mailto:faiman.rahyaz@gmail.com"
+          class="btn"
+          id="email-btn"
+          style="display: inline-flex; align-items: center; gap: 6px;"
+          ><i class="ri-mail-line" style="font-size:14px"></i>Email</a
+        >
+        <span class="btn-copy-tip" id="email-tip">Copy</span>
+      </span>
+      <a
+        href="https://github.com/viscory"
+        class="btn"
+        style="display: inline-flex; align-items: center; gap: 6px;"
+        target="_blank"
+        rel="noopener"
+        ><i class="ri-github-line" style="font-size:14px"></i>GitHub</a
+      >
+      <a
+        href="https://linkedin.com/in/faiyazr"
+        class="btn"
+        style="display: inline-flex; align-items: center; gap: 6px;"
+        target="_blank"
+        rel="noopener"
+        ><i class="ri-linkedin-line" style="font-size:14px"></i>LinkedIn</a
+      >
+      <a
+        href="/assets/resume.pdf"
+        class="btn"
+        style="display: inline-flex; align-items: center; gap: 6px;"
+        target="_blank"
+        rel="noopener"
+        ><i class="ri-file-text-line" style="font-size:14px"></i>Resume</a
+      >
+    </div>
+  </div>
 
   <hr class="container section-divider" />
 

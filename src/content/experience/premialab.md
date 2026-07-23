@@ -7,8 +7,8 @@ location: Hong Kong
 url: https://premialab.com
 ---
 
-- Built a sub-300ms hybrid search screener over 100k+ instruments — evaluated Qdrant vs **pgvector/HNSW**, chose **Postgres** for operational simplicity; fused **Titan** dense embeddings + **BM25** sparse via **RRF**; **ag-Grid** frontend with virtualized rows, multi-tenant filter scopes, saved views, aggregated metrics; P95 < 500ms cold, < 300ms warm
-- Built a no-code reporting system with **Vue.js**, **FastAPI**, **NestJS**, and **AWS Bedrock** (**Claude 3.5 Sonnet**); **RAG** pipeline over financial reports to stream automated commentary alongside 204 analytics components with exact PDF layout parity
+- Built a sub-300ms hybrid search screener over 100k+ instruments combining **vector search** (**pgvector/HNSW**) + **BM25** sparse retrieval via **RRF** — chose **Postgres** over Qdrant for operational simplicity; **Titan** embeddings for dense retrieval, **ag-Grid** frontend with virtualized rows; P95 < 300ms warm
+- Built a no-code reporting system powered by **AWS Bedrock** (**Claude 3.5 Sonnet**) with a **RAG** pipeline over financial reports, streaming automated LLM commentary alongside 204 analytics components with exact PDF layout parity; **Vue.js**/**FastAPI**/**NestJS** stack
 - Built peer group analytics and factor comparison engines using **Python** (**Pandas**/**NumPy**/**Jupyter**) and **PostgreSQL** to compute volume-adjusted betas, rolling regressor graphs, and **KDE** distributions; built an automated regression layer to accelerate feature onboarding
 - Built a low-latency quantitative data pipeline integrating a **C++** calculation engine via **Docker**; mapped live macro signals to downstream modules using Threshold methodologies to segment portfolio performances across market regimes
 - Replaced a flaky headless browser setup with client-side **jsPDF** implementation; eliminated server-side rendering failures, achieving 80% reduction in report generation time with exact **WYSIWYG** parity

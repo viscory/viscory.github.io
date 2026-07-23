@@ -1,0 +1,6 @@
+# lychee link checker config
+exclude = [
+  "linkedin.com",    # LinkedIn blocks bots
+  "goatcounter.com", # Not our link to check
+  "cdnjs.cloudflare.com", # CDN is assumed reliable
+]

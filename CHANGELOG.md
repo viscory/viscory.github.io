@@ -28,6 +28,22 @@ All notable changes to this project are documented here.
 - Experience files (`premialab.md`, `kmon.md`, `reap.md`, `bnp.md`): Restored all bullets to match RESUME.md exactly
 - `src/pages/index.astro`: Removed redundant inline `text-decoration: none`, added email copy tooltip HTML
 
+- `src/pages/index.astro`: Removed mood button HTML (was already absent); adjusted for layout consistency
+- `src/styles/global.css`: Added print stylesheet (`@media print`), fixed named colors for Stylelint compliance
+- `src/content/experience/premialab.md`: Bolded key terms for readability
+- `public/googled313d947fad3a870.html`: Google Search Console verification file
+- `astro.config.mjs`, `package.json`, `pnpm-lock.yaml`: Added `@astrojs/sitemap` integration for automatic sitemap generation
+- `public/robots.txt`: Allow all, point to sitemap
+- `.github/workflows/ci.yml`: Added lychee link check step after build
+- `.lychee.toml`: Config for lychee link checker
+- `src/layouts/Layout.astro`: JSON-LD Person schema; GoatCounter analytics script
+- `public/googled313d947fad3a870.html`: Google Search Console verification
+
+### Fixed
+
+- Print stylesheet: hides chrome (canvas, nav, footer, HUD), black-on-white for printing
+- Interactive.ts: Removed mood button FSM code (button HTML was already removed earlier); added AQI fetch from HK Observatory
+
 ---
 
 ## [Fix Weather API Endpoint]
