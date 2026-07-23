@@ -25,8 +25,17 @@ All notable changes to this project are documented here.
 
 ### Changed
 
-- `src/content/experience/premialab.md`, `kmon.md`, `reap.md`, `bnp.md`: Rewrote all descriptions to be natural and buzzword-free (per RESUME.md)
 - `src/content/projects/homelab.md`, `paperless-py.md`: Updated startYear 2025→2026
+
+### Fixed
+
+- `src/content/experience/premialab.md`: Restored to 8 bullets matching RESUME.md (was 7 — merged peer group + market regime); added missing specifics: Qdrant eval, saved views, P95, 204 components, PDF parity, vol-adjusted betas/KDE, Threshold methodologies, WYSIWYG parity, nested performance attribution, Royal Bank of Canada, Jira-to-PR automation
+- `src/content/experience/kmon.md`: Restored to 6 bullets (was 5 — missing TimescaleDB/2000 ops/sec bullet); added missing specifics: Java 17, Karapace, 100% data parity, edge hub back-off, KMSF payloads, semantic versioning from Git hooks
+- `src/content/experience/bnp.md`: Restored to 4 bullets (was 3 — missing Four-Eyes Principle deployment compliance bullet); added missing: GIL multiprocessing, high-cardinality, .pcap histories
+- `src/content/experience/reap.md`: Restored original text
+- `AGENTS.md`: Updated experience section to match RESUME.md descriptions
+- `src/scripts/interactive.ts`: Added HK Observatory weather API fetch (temperature in HUD)
+- `src/styles/global.css`: Layout adjustments for HUD weather display
 
 ---
 
