@@ -14,7 +14,7 @@ if (weatherEl) {
   async function fetchWeather() {
     try {
       const r = await fetch(
-        "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=flw&lang=en",
+        "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=en",
       );
       const d = await r.json();
       const temp = d.temperature?.data?.[0]?.value ?? d.temperature?.value;

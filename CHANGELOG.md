@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented here.
 
+## [Fix Weather API Endpoint]
+
+### Fixed
+
+- `src/scripts/interactive.ts`: Changed HK Observatory API dataType from `flw` (forecast text) to `rhrread` (current hourly readings). Temperature now parses from `temperature.data[0].value`.
+
+---
+
 ## [Downgrade pnpm 11 → 10]
 
 ### Changed
