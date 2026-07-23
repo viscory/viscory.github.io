@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented here.
 
+## [Remove Headshot]
+
+### Removed
+
+- `src/pages/index.astro`: Removed headshot image and wrapper div, moved top padding to About section
+
 ## [Remove Degree Classification]
 
 ### Fixed
