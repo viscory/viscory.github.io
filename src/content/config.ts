@@ -8,6 +8,7 @@ const projects = defineCollection({
     endYear: z
       .string()
       .regex(/^\d{4}$/)
+      .or(z.literal("Present"))
       .optional(),
     url: z.string().url(),
     tags: z.array(z.string()).max(8),

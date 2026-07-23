@@ -1,6 +1,7 @@
 ---
 title: Homelab
 startYear: "2025"
+endYear: "Present"
 url: https://github.com/viscory
 tags: ["Go", "Docker", "Tailscale", "Grafana", "PostgreSQL"]
 ---

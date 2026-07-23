@@ -8,6 +8,23 @@ function tick() {
 tick();
 setInterval(tick, 1000);
 
+// ── HK Observatory Weather ──
+const weatherEl = document.getElementById("hud-weather");
+if (weatherEl) {
+  async function fetchWeather() {
+    try {
+      const r = await fetch(
+        "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=flw&lang=en",
+      );
+      const d = await r.json();
+      const temp = d.temperature?.data?.[0]?.value ?? d.temperature?.value;
+      if (temp !== undefined) weatherEl.textContent = `${temp}° / `;
+    } catch {}
+  }
+  fetchWeather();
+  setInterval(fetchWeather, 300000);
+}
+
 // ── Check motion preference ──
 const prefersReducedMotion = () =>
   matchMedia("(prefers-reduced-motion: reduce)").matches;

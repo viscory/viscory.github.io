@@ -14,6 +14,15 @@ All notable changes to this project are documented here.
 
 - `src/pages/index.astro`: Education degree classification corrected to "Second Class Honours Upper Division"
 
+### Fixed
+
+- `src/pages/index.astro`: Bio corrected to "4+ years" (was "5+"); degree date removed; Premialab description rephrased ("AI-driven no-code reporting" not "modular CRUD")
+- `src/layouts/Layout.astro`: Meta description corrected to "4+ years", removed AWS Bedrock mention
+- `src/content/experience/premialab.md`: Rephrased line to "AI-driven no-code reporting system"
+- `src/content/projects/homelab.md`: Added `endYear: "Present"`
+- `src/scripts/interactive.ts`: Added HK Observatory weather API fetch (temperature in HUD)
+- `src/content/config.ts`: Updated `endYear` schema to accept `"Present"` (for Homelab ongoing project)
+
 ---
 
 ## [CI Fix: Standard Workflow + .npmrc]
