@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented here.
 
+## [Spacing Audit Fixes]
+
+### Fixed
+- `src/styles/global.css`: Fixed stale mobile nav override (was using old 1.5rem padding), removed unused `--text-hero` and `--space-inner` tokens, removed dead `h1` rule
+- `src/pages/index.astro`: About section side padding now inherits from `.container` (tightens to 16px on mobile)
+- `src/layouts/Layout.astro`: Footer side padding now inherits from `.container` (tightens to 16px on mobile)
+
 ## [HUD Clock Alignment]
 
 ### Fixed

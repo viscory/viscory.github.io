@@ -14,13 +14,11 @@
   --font-heading:
     "Helvetica Neue", "Arial Black", "Impact", system-ui, sans-serif;
   --font-body: "SFMono-Regular", "Menlo", "Consolas", "Monaco", monospace;
-  --text-hero: clamp(3rem, 10vw, 7rem);
   --text-heading: clamp(1.5rem, 3vw, 2.75rem);
   --text-subhead: clamp(1rem, 1.5vw, 1.25rem);
   --text-body: clamp(0.75rem, 1vw, 0.9375rem);
   --text-meta: clamp(0.625rem, 0.8vw, 0.75rem);
   --space-section: clamp(2.5rem, 5vw, 5rem);
-  --space-inner: clamp(1.5rem, 2vw, 2.5rem);
 }
 
 html {
@@ -55,9 +53,6 @@ h4 {
   color: var(--color-fg);
 }
 
-h1 {
-  font-size: var(--text-hero);
-}
 h2 {
   font-size: var(--text-heading);
 }
@@ -86,7 +81,7 @@ li {
   top: 0;
   z-index: 15;
   background: var(--color-bg);
-  padding: 6px 24px 24px;
+  padding: 6px 24px clamp(12px, 2.5vw, 28px);
 }
 .nav-inner {
   display: flex;
@@ -356,14 +351,13 @@ a:hover {
 
 @media (max-width: 640px) {
   :root {
-    --text-hero: clamp(2.25rem, 12vw, 3.5rem);
     --space-section: clamp(2rem, 4vw, 3rem);
   }
   .container {
     padding: 0 16px;
   }
   .nav-bar {
-    padding: 1.5rem 16px;
+    padding: 6px 16px 12px;
   }
   #hud {
     display: none;
