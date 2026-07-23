@@ -8,10 +8,11 @@
     "lint:css": "stylelint 'src/**/*.css'",
     "format": "prettier --check 'src/**/*.{astro,css,ts}'",
     "format:fix": "prettier --write 'src/**/*.{astro,css,ts}'",
-    "check": "pnpm run lint:css && pnpm run format && pnpm run build"
+    "validate:content": "node scripts/validate-content.mjs",
+    "check": "pnpm run lint:css && pnpm run format && pnpm run validate:content && pnpm run build"
   },
   "dependencies": {
-    "astro": "^4.0.0"
+    "astro": "^5.0.0"
   },
   "devDependencies": {
     "prettier": "^3.4.0",

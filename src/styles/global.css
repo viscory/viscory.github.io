@@ -95,6 +95,10 @@ li {
 .nav-list a {
   text-decoration: none;
 }
+.nav-list a.active {
+  background: var(--color-fg);
+  color: var(--color-bg);
+}
 
 /* ── Links — no underlines ── */
 a {
@@ -130,7 +134,7 @@ a:hover {
   color: var(--color-fg);
   font-family: var(--font-body);
   font-size: var(--text-meta);
-  text-decoration: none;
+  text-decoration: none !important;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   line-height: 1;
@@ -191,6 +195,18 @@ a:hover {
   margin-top: 2px;
 }
 
+/* ── Scroll progress bar ── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--color-fg);
+  width: 0;
+  z-index: 30;
+  pointer-events: none;
+}
+
 /* ── Canvas background ── */
 #bg {
   position: fixed;
@@ -200,6 +216,63 @@ a:hover {
   height: 100%;
   z-index: 0;
   pointer-events: none;
+}
+
+/* ── Experience section ── */
+.exp-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.exp-list li {
+  padding: 0.35rem 0 0.35rem 1.2rem;
+  position: relative;
+  line-height: 1.85;
+}
+.exp-list li::before {
+  content: "—\00a0";
+  position: absolute;
+  left: 0;
+}
+.exp-list strong {
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+}
+
+.exp-company a {
+  text-decoration: none;
+}
+.exp-company a:hover {
+  text-decoration: underline;
+  background: none;
+  color: var(--color-fg);
+}
+
+/* ── Email copy tooltip ── */
+.btn-wrap {
+  position: relative;
+}
+.btn-copy-tip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: var(--color-fg);
+  color: var(--color-bg);
+  padding: 2px 8px;
+  font-size: 10px;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.btn-copy-tip.show {
+  opacity: 1;
 }
 
 /* ── prefers-reduced-motion ── */

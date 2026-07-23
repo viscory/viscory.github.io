@@ -26,6 +26,8 @@ import "../styles/global.css";
     <meta property="og:url" content="https://viscory.github.io" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://viscory.github.io" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://data.weather.gov.hk" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
@@ -36,6 +38,7 @@ import "../styles/global.css";
     />
   </head>
   <body>
+    <div id="scroll-progress" aria-hidden="true"></div>
     <canvas id="bg" aria-hidden="true"></canvas>
 
     <div id="hud">

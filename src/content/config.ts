@@ -26,6 +26,7 @@ const experience = defineCollection({
     startDate: z.string().regex(datePattern),
     endDate: z.string().regex(datePattern).or(z.literal("Present")),
     location: z.string(),
+    url: z.string().url().optional(),
   }),
 });
 

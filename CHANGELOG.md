@@ -2,6 +2,34 @@
 
 All notable changes to this project are documented here.
 
+## [Astro v5, Nav Highlight, Scroll Bar, Email Copy, Content Validation]
+
+### Changed
+
+- Upgraded Astro 4 → 5.18.2 (no breaking changes needed for content API)
+
+### Added
+
+- `src/scripts/interactive.ts`: Active nav highlighting on scroll (IntersectionObserver), scroll progress bar, email copy on hover/click
+- `src/styles/global.css`: Styles for nav active state, scroll progress bar, email copy tooltip (`.btn-wrap`, `.btn-copy-tip`)
+- `src/layouts/Layout.astro`: Preconnect links for CDN and weather API, scroll progress bar element
+- `scripts/validate-content.mjs`: Content validation script checking bullet counts match RESUME.md
+- `package.json`: Added `validate:content` script, added to `check` pipeline
+- `.husky/pre-commit`: Added content validation step
+
+### Fixed
+
+- `src/styles/global.css`: Fixed `text-decoration: none` being stripped by CSS minifier — changed to `!important` on `.btn` class, removed redundant inline styles from hero links
+- `src/scripts/interactive.ts`: Restored mood button section that was lost in a previous commit
+
+- `pnpm-lock.yaml`: Updated for Astro 5 dependency tree
+- `public/assets/cuhk-logo.png`: CUHK logo asset
+- `src/content/config.ts`: Added `url` optional field to experience schema
+- Experience files (`premialab.md`, `kmon.md`, `reap.md`, `bnp.md`): Restored all bullets to match RESUME.md exactly
+- `src/pages/index.astro`: Removed redundant inline `text-decoration: none`, added email copy tooltip HTML
+
+---
+
 ## [Fix Weather API Endpoint]
 
 ### Fixed

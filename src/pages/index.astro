@@ -34,6 +34,13 @@ const renderedProjects = await Promise.all(
   projects.map(async (p) => ({ entry: p, Content: (await render(p)).Content })),
 );
 
+const renderedExperience = await Promise.all(
+  experience.map(async (e) => ({
+    entry: e,
+    Content: (await render(e)).Content,
+  })),
+);
+
 const skills = [
   "TypeScript",
   "Python",
@@ -105,16 +112,21 @@ const projectIcons: Record<string, string> = {
       <div
         style="display: flex; gap: 0.75rem; flex-wrap: wrap; padding-bottom: 0.5rem;"
       >
-        <a
-          href="mailto:faiman.rahyaz@gmail.com"
-          class="btn"
-          style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none;"
-          ><i class="ri-mail-line" style="font-size:14px"></i>Email</a
+        <span class="btn-wrap">
+          <a
+            href="mailto:faiman.rahyaz@gmail.com"
+            class="btn"
+            id="email-btn"
+            style="display: inline-flex; align-items: center; gap: 6px;"
+            ><i class="ri-mail-line" style="font-size:14px"></i>Email</a
+          >
+          <span class="btn-copy-tip" id="email-tip">Copy</span>
+        </span>
         >
         <a
           href="https://github.com/viscory"
           class="btn"
-          style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none;"
+          style="display: inline-flex; align-items: center; gap: 6px;"
           target="_blank"
           rel="noopener"
           ><i class="ri-github-line" style="font-size:14px"></i>GitHub</a
@@ -122,7 +134,7 @@ const projectIcons: Record<string, string> = {
         <a
           href="https://linkedin.com/in/faiyazr"
           class="btn"
-          style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none;"
+          style="display: inline-flex; align-items: center; gap: 6px;"
           target="_blank"
           rel="noopener"
           ><i class="ri-linkedin-line" style="font-size:14px"></i>LinkedIn</a
@@ -130,7 +142,7 @@ const projectIcons: Record<string, string> = {
         <a
           href="/assets/resume.pdf"
           class="btn"
-          style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none;"
+          style="display: inline-flex; align-items: center; gap: 6px;"
           target="_blank"
           rel="noopener"
           ><i class="ri-file-text-line" style="font-size:14px"></i>Resume</a
@@ -168,10 +180,18 @@ const projectIcons: Record<string, string> = {
     <h2 class="meta" style="margin-bottom: 1.5rem;">Experience</h2>
     <div class="bordered" style="border-top: none;">
       {
-        experience.map((entry) => (
+        renderedExperience.map(({ entry, Content }) => (
           <div class="bordered-bottom" style="padding: 1.25rem 1rem;">
             <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.25rem;">
-              <h3>{entry.data.company}</h3>
+              <h3 class="exp-company">
+                {entry.data.url ? (
+                  <a href={entry.data.url} target="_blank" rel="noopener">
+                    {entry.data.company}
+                  </a>
+                ) : (
+                  entry.data.company
+                )}
+              </h3>
               <span class="meta">
                 {entry.data.startDate} &ndash; {entry.data.endDate}
               </span>
@@ -179,16 +199,9 @@ const projectIcons: Record<string, string> = {
             <span class="meta" style="display: block; margin-bottom: 0.75rem;">
               {entry.data.role} &middot; {entry.data.location}
             </span>
-            <ul style="list-style: none; padding: 0;">
-              {entry.body
-                .split("\n")
-                .filter((l) => l.trim().startsWith("-"))
-                .map((line) => (
-                  <li style="padding: 0.2rem 0; text-indent: -1.1rem; padding-left: 1.1rem;">
-                    &mdash;&nbsp;{line.trim().replace(/^-\s*/, "")}
-                  </li>
-                ))}
-            </ul>
+            <div class="exp-list">
+              <Content />
+            </div>
           </div>
         ))
       }
@@ -265,10 +278,10 @@ const projectIcons: Record<string, string> = {
     <h2 class="meta" style="margin-bottom: 1.5rem;">Education</h2>
     <div
       class="bordered"
-      style="padding: 1.5rem 1.25rem; display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;"
+      style="padding: 1.5rem 1.25rem; display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;"
     >
       <img
-        src="/assets/school-logo-1x.png"
+        src="/assets/cuhk-logo.png"
         alt="CUHK"
         width="80"
         style="filter: grayscale(1); flex-shrink: 0;"
@@ -294,9 +307,4 @@ const projectIcons: Record<string, string> = {
   </section>
 
   <div style="height: 4rem;"></div>
-
-  <!-- FSM Mood Button -->
-  <button id="chat-btn" aria-label="Mood"
-    ><i class="ri-question-line"></i></button
-  >
 </Layout>
