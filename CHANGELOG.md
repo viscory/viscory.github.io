@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented here.
 
+## [Sticky Nav, HUD/Footer Padding, Keyword Hover]
+
+### Changed
+- `src/styles/global.css`: Made nav sticky, adjusted HUD to 6px offset, keyword slide-in hover, pointer cursor on keywords, HUD hidden on mobile
+- `src/layouts/Layout.astro`: Footer padding 6px vertical
+- `src/styles/global.css`: Removed keyword underline styling (false link signal)
+
 ## [Remove Headshot]
 
 ### Removed

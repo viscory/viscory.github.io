@@ -82,7 +82,11 @@ li {
 
 /* ── Nav list ── */
 .nav-bar {
-  padding: 1.5rem 24px;
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  background: var(--color-bg);
+  padding: 6px 24px 24px;
 }
 .nav-inner {
   display: flex;
@@ -194,8 +198,8 @@ a:hover {
 /* ── HUD ── */
 #hud {
   position: fixed;
-  top: 24px;
-  left: 24px;
+  top: 6px;
+  left: 6px;
   z-index: 10;
   pointer-events: none;
 }
@@ -256,9 +260,21 @@ a:hover {
 }
 .exp-list strong {
   font-weight: 600;
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  text-underline-offset: 3px;
+  position: relative;
+  cursor: pointer;
+}
+.exp-list strong::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-fg);
+  transition: width 0.2s ease;
+}
+.exp-list strong:hover::after {
+  width: 100%;
 }
 
 .exp-company a {
@@ -349,6 +365,6 @@ a:hover {
     padding: 1.5rem 16px;
   }
   #hud {
-    left: 16px;
+    display: none;
   }
 }
