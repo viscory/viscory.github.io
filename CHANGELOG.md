@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented here.
 
+## [Remove Degree Classification]
+
+### Fixed
+
+- `src/pages/index.astro`: Removed degree classification from education line
+
+---
+
 ## [Astro v5, Nav Highlight, Scroll Bar, Email Copy, Content Validation]
 
 ### Changed
