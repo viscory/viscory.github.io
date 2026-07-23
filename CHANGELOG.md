@@ -23,6 +23,11 @@ All notable changes to this project are documented here.
 - `src/scripts/interactive.ts`: Added HK Observatory weather API fetch (temperature in HUD)
 - `src/content/config.ts`: Updated `endYear` schema to accept `"Present"` (for Homelab ongoing project)
 
+### Changed
+
+- `src/content/experience/premialab.md`, `kmon.md`, `reap.md`, `bnp.md`: Rewrote all descriptions to be natural and buzzword-free (per RESUME.md)
+- `src/content/projects/homelab.md`, `paperless-py.md`: Updated startYear 2025→2026
+
 ---
 
 ## [CI Fix: Standard Workflow + .npmrc]

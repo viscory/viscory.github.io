@@ -6,6 +6,6 @@ endDate: Aug 2021
 location: Hong Kong
 ---
 
-- Engineered distributed fan-out data replication engine in Python across 200+ nodes
-- Designed Kafka/Elasticsearch ingestion pipeline for sub-second dashboard refreshes on trading logs
-- Optimized multi-threaded C++ packet replay engine using non-blocking condition variables
+- Built a Python data replication engine that routes data across 200+ nodes based on live server latency
+- Designed a Kafka/Elasticsearch ingestion pipeline for sub-second dashboard refreshes on trading logs
+- Optimized a multi-threaded C++ packet replay engine by replacing blocking loops with non-blocking condition variables

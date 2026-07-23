@@ -1,6 +1,6 @@
 ---
 title: paperless-py
-startYear: "2025"
+startYear: "2026"
 url: https://github.com/viscory/paperless-py
 tags: ["Python"]
 ---
