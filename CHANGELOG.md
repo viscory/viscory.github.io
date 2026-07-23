@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here.
 
+## [HUD Clock Alignment]
+
+### Fixed
+- `src/styles/global.css`: Added `line-height: 1` to HUD clock to align with sticky nav brand text
+
 ## [Sticky Nav, HUD/Footer Padding, Keyword Hover]
 
 ### Changed

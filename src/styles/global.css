@@ -207,6 +207,7 @@ a:hover {
 #hud .time {
   font-size: 14px;
   font-weight: 600;
+  line-height: 1;
   color: var(--color-fg);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
