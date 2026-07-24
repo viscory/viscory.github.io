@@ -1,3 +1,8 @@
+## [Resume PDF Update]
+
+### Changed
+- `public/resume.pdf`: Updated to latest compiled resume
+
 # Changelog
 
 All notable changes to this project are documented here.
