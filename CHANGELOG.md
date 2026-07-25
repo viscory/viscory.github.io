@@ -1,3 +1,8 @@
+## [Remove education dates]
+
+### Changed
+- `src/pages/index.astro`: Removed "2018 &ndash; 2023" from education section
+
 ## [Quora icon swap]
 
 ### Changed
