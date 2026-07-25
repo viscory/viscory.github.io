@@ -1,3 +1,8 @@
+## [Find Me Section + Social Profiles]
+
+### Added
+- `src/pages/index.astro`: "You Can Also Find Me At" section after Education with 9 external profile links (Dev.to, Medium, Hashnode, Product Hunt, Kaggle, Quora, npm, Devpost, Exercism) using `.btn` style consistent with the contact bar
+
 ## [SEO: OG Image, Twitter Cards, Richer JSON-LD, .nojekyll cleanup]
 
 ### Added
