@@ -1,3 +1,8 @@
+## [Quora icon swap]
+
+### Changed
+- `src/pages/index.astro`: Quora icon from `ri-quora-line` (no brand logo) to `ri-question-answer-line` (Q&A chat bubble)
+
 ## [Elsewhere: Stack Overflow + Hugging Face]
 
 ### Added
