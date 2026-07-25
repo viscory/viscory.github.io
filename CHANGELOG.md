@@ -1,7 +1,12 @@
+## [Elsewhere: Remove Exercism]
+
+### Removed
+- `src/pages/index.astro`: Exercism link from Elsewhere section
+
 ## [Find Me Section + Social Profiles]
 
 ### Added
-- `src/pages/index.astro`: "Elsewhere" section after Education with 9 external profile links (Dev.to, Medium, Hashnode, Product Hunt, Kaggle, Quora, npm, Devpost, Exercism) using `.btn` style consistent with the contact bar
+- `src/pages/index.astro`: "Elsewhere" section after Education with 8 external profile links (Dev.to, Medium, Hashnode, Product Hunt, Kaggle, Quora, npm, Devpost) using `.btn` style consistent with the contact bar
 
 ## [SEO: OG Image, Twitter Cards, Richer JSON-LD, .nojekyll cleanup]
 
