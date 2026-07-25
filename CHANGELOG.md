@@ -1,3 +1,19 @@
+## [SEO: OG Image, Twitter Cards, Richer JSON-LD, .nojekyll cleanup]
+
+### Added
+- `src/layouts/Layout.astro`: `og:image` (headshot), `og:image:width`/`height`/`alt` for social previews
+- `src/layouts/Layout.astro`: Twitter Card meta tags (`summary card`, title, description, image)
+- `src/layouts/Layout.astro`: JSON-LD Person now includes `image`, `description`, `address` (Hong Kong), `nationality`, and 16 `knowsAbout` skills
+
+### Removed
+- Root `.nojekyll` (leftover; `public/.nojekyll` is the canonical one copied to `dist/`)
+
+### Changed
+- `public/assets/resume.pdf` → `faiyaz-rahman-full-stack-developer-resume.pdf`
+- `public/assets/cuhk-logo.png` → `chinese-university-of-hong-kong-logo.png`
+- `src/pages/index.astro`: Updated resume href, logo src, and alt text
+- `AGENTS.md`: Updated file listing and resume path
+
 ## [Favicon Fix]
 
 ### Fixed

@@ -17,7 +17,7 @@ src/
 ├── pages/index.astro      — Queries getCollection() for projects + experience, renders all sections
 ├── scripts/interactive.ts — Client-side: HUD clock, Canvas rain/meteors, FSM mood button
 └── env.d.ts               — Auto-generated type declarations
-public/assets/             — headshot.jpg, resume.pdf, school-logo-1x.png
+public/assets/             — headshot.jpg, faiyaz-rahman-full-stack-developer-resume.pdf, chinese-university-of-hong-kong-logo.png
 dist/                      — Build output (HTML + assets)
 .stylelintrc.json          — CSS enforcement (no named colors, no url(), strict units)
 .prettierrc.mjs            — 2-space tabs, Astro parser
@@ -49,7 +49,7 @@ astro.config.mjs           — Site config (output: static, dir: ./dist)
 - **Email**: faiman.rahyaz@gmail.com
 - **GitHub**: viscory
 - **LinkedIn**: faiyazr
-- **Resume**: `public/assets/resume.pdf`
+- **Resume**: `public/assets/faiyaz-rahman-full-stack-developer-resume.pdf`
 
 ### Experience
 1. Premialab — Full Stack Developer (Apr 2025–Present) — search screener, no-code reporting, peer analytics, market regime modeling, jsPDF, portfolio testing, whitelabel, DX overhaul
