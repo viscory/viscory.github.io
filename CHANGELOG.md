@@ -1,3 +1,9 @@
+## [SEO CUHK Alumni + Structured Data]
+
+### Changed
+- `src/layouts/Layout.astro`: Title/OG title updated from "CUHK CS Graduate" to "CUHK Alumni"; meta keywords refreshed; JSON-LD expanded with typed alumniOf object + worksFor
+- `src/pages/index.astro`: H1 subtitle "CUHK CS" → "CUHK Alumni"; about paragraph now says "alumnus" with 4+ years experience; education section now includes "2018 – 2023"
+
 ## [SEO: Title, Meta, H1, About Copy]
 
 ### Changed
