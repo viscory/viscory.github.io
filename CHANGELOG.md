@@ -1,3 +1,9 @@
+## [SEO: Title, Meta, H1, About Copy]
+
+### Changed
+- `src/layouts/Layout.astro`: Title, OG title, meta/OG description updated to include Full Stack Developer, CUHK CS, Hong Kong
+- `src/pages/index.astro`: Added H1 with name + subtitle; about paragraph updated to mention Full Stack Developer, CUHK
+
 ## [Resume PDF Update]
 
 ### Changed
