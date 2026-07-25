@@ -1,3 +1,8 @@
+## [Favicon Fix]
+
+### Fixed
+- `src/layouts/Layout.astro`: Favicon SVG now centers the "F" horizontally and vertically (was shoved bottom-left); added heading font-family (Arial Black, Impact)
+
 ## [SEO CUHK Alumni + Structured Data]
 
 ### Changed
