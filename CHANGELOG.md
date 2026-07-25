@@ -1,3 +1,8 @@
+## [Elsewhere: Stack Overflow + Hugging Face]
+
+### Added
+- `src/pages/index.astro`: Stack Overflow and Hugging Face links to Elsewhere section (now 10 total)
+
 ## [Elsewhere: Remove Exercism]
 
 ### Removed
