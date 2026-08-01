@@ -1,3 +1,9 @@
+## [Add Déjà Vu project]
+
+### Added
+- `src/content/projects/deja-vu.md`: Déjà Vu multiplayer memory-card game (Rust CLI over TCP)
+- `src/pages/index.astro`: Déjà Vu project icon (`ri-gamepad-line`)
+
 ## [Remove education dates]
 
 ### Changed
