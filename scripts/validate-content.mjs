@@ -12,7 +12,7 @@ const expDir = join(repoRoot, "src", "content", "experience");
 
 // Expected bullet counts per company (from RESUME.md)
 const EXPECTED = {
-  "premialab.md": 8,
+  "premialab.md": 9,
   "kmon.md": 6,
   "reap.md": 2,
   "bnp.md": 4,

@@ -1,3 +1,12 @@
+## [Agentic analytics bullet and refreshed resume]
+
+### Changed
+- `src/content/experience/premialab.md`: added shipped Python/LangGraph multi-agent analyst dashboard bullet
+- `scripts/validate-content.mjs`: Premialab expected bullet count from 8 to 9
+- `public/assets/faiyaz-rahman-full-stack-developer-resume.pdf`: refreshed with latest resume build
+- `public/resume.pdf`: refreshed with latest resume build
+- `AGENTS.md`: Premialab summary now includes agentic analyst dashboards
+
 ## [Add Déjà Vu project]
 
 ### Added

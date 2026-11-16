@@ -52,7 +52,7 @@ astro.config.mjs           — Site config (output: static, dir: ./dist)
 - **Resume**: `public/assets/faiyaz-rahman-full-stack-developer-resume.pdf`
 
 ### Experience
-1. Premialab — Full Stack Developer (Apr 2025–Present) — search screener, no-code reporting, peer analytics, market regime modeling, jsPDF, portfolio testing, whitelabel, DX overhaul
+1. Premialab — Full Stack Developer (Apr 2025–Present) — agentic analyst dashboards, search screener, no-code reporting, peer analytics, market regime modeling, jsPDF, portfolio testing, whitelabel, DX overhaul
 2. KM.ON Asia Limited — Junior Full Stack Developer (Jul 2023–Feb 2025) — multi-cloud React/Express platform, 1.5TB IoT pipeline, TimescaleDB at 2k+ ops/sec, Strimzi Kafka migration, Scala/MQTT microservice, SBOM/GitOps
 3. Reap Technologies — Software Engineer Intern (Jun 2022–Sep 2022) — monolith→CSR refactor, TDD
 4. BNP Paribas CIB — IT Strategist Contract (Feb 2021–Aug 2021) — Python replication across 200+ nodes, Kafka/ES pipeline, Four-Eyes deployment, C++ packet replay

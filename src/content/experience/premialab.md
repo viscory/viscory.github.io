@@ -7,6 +7,7 @@ location: Hong Kong
 url: https://premialab.com
 ---
 
+- Shipped a **Python**/**LangGraph** multi-agent graph turning **MCP** API calls into on-the-fly analyst dashboards; per-agent prompts autonomously select tools and construct requests for performance, risk, factor regressions, rolling metrics, and benchmarks, then write commentary and a chart spec with descriptions, backed by **Pydantic** schemas, retry validation, and **LangSmith** evals enforcing spec parity
 - Built a sub-300ms hybrid search screener over 100k+ instruments combining **vector search** (**pgvector/HNSW**) + **BM25** sparse retrieval via **RRF** — chose **Postgres** over Qdrant for operational simplicity; **Titan** embeddings for dense retrieval, **ag-Grid** frontend with virtualized rows; P95 < 300ms warm
 - Built a no-code reporting system powered by **AWS Bedrock** (**Claude 3.5 Sonnet**) with a **RAG** pipeline over financial reports, streaming automated LLM commentary alongside 204 analytics components with exact PDF layout parity; **Vue.js**/**FastAPI**/**NestJS** stack
 - Built peer group analytics and factor comparison engines using **Python** (**Pandas**/**NumPy**/**Jupyter**) and **PostgreSQL** to compute volume-adjusted betas, rolling regressor graphs, and **KDE** distributions; built an automated regression layer to accelerate feature onboarding
