@@ -1,3 +1,9 @@
+## [Refresh resume PDF with 2-page layout]
+
+### Changed
+- `public/assets/faiyaz-rahman-full-stack-developer-resume.pdf`: refreshed with 2-page resume layout
+- `public/resume.pdf`: refreshed with 2-page resume layout
+
 ## [Agentic analytics bullet and refreshed resume]
 
 ### Changed
